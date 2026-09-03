@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-label="O ciclo do modulex: consulta barata, injecao sob demanda, extracao que fecha o ciclo e verificacao que impede o modulo de envelhecer">
+  <rect width="1000" height="380" rx="14" fill="#0d1117"/>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+
+    <text x="500" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#e6edf3">A consulta e barata. So a injecao puxa peso.</text>
+
+    <rect x="40" y="62" width="180" height="86" rx="10" fill="#121d2f" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="130" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#58a6ff">M0 consultar</text>
+    <text x="130" y="108" text-anchor="middle" font-size="10.5" fill="#8b949e">le so modulos.json</text>
+    <text x="130" y="124" text-anchor="middle" font-size="10.5" fill="#8b949e">responde no chat</text>
+    <text x="130" y="140" text-anchor="middle" font-size="10.5" fill="#3fb950">1 arquivo</text>
+
+    <rect x="272" y="62" width="180" height="86" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+    <text x="362" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#e6edf3">M1 injetar</text>
+    <text x="362" y="108" text-anchor="middle" font-size="10.5" fill="#8b949e">so as fatias escolhidas</text>
+    <text x="362" y="124" text-anchor="middle" font-size="10.5" fill="#8b949e">na base do trabalho</text>
+    <text x="362" y="140" text-anchor="middle" font-size="10.5" fill="#d29922">+ 1 MODULO.md</text>
+
+    <rect x="504" y="62" width="180" height="86" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+    <text x="594" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#e6edf3">F6 do sprintx</text>
+    <text x="594" y="108" text-anchor="middle" font-size="10.5" fill="#8b949e">copia o artefato</text>
+    <text x="594" y="124" text-anchor="middle" font-size="10.5" fill="#8b949e">task a task, sob TDD</text>
+    <text x="594" y="140" text-anchor="middle" font-size="10.5" fill="#f85149">+150 arquivos, so aqui</text>
+
+    <rect x="736" y="62" width="224" height="86" rx="10" fill="#0f2417" stroke="#3fb950" stroke-width="1.5"/>
+    <text x="848" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#3fb950">M2 extrair</text>
+    <text x="848" y="108" text-anchor="middle" font-size="10.5" fill="#8b949e">feature entregue vira modulo</text>
+    <text x="848" y="124" text-anchor="middle" font-size="10.5" fill="#8b949e">e o que fecha o ciclo</text>
+    <text x="848" y="140" text-anchor="middle" font-size="10.5" fill="#3fb950">sem ela, o catalogo apodrece</text>
+
+    <g stroke="#1f6feb" stroke-width="1.5" fill="none" opacity="0.75">
+      <path d="M220 105h44"/><path d="M452 105h44"/><path d="M684 105h44"/>
+    </g>
+
+    <path d="M848 148 v34 H130 v-26" stroke="#3fb950" stroke-width="1.5" fill="none" opacity="0.8" stroke-dasharray="5 4"/>
+    <text x="500" y="176" text-anchor="middle" font-size="10.5" fill="#3fb950">o modulo novo volta ao catalogo, e a proxima consulta ja o acha</text>
+
+    <rect x="40" y="214" width="440" height="130" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+    <text x="60" y="240" font-size="13" font-weight="700" fill="#e6edf3">M3 verificar — o modulo envelhece</text>
+    <g font-size="11" fill="#8b949e">
+      <text x="60" y="266">contrato da API, erros, pre-requisitos</text>
+      <text x="60" y="288">cadeia de falha, plano, stack, esforco</text>
+      <text x="60" y="310">problema, sinonimos, fatias, cobertura</text>
+    </g>
+    <g font-size="11" fill="#e6edf3" text-anchor="end">
+      <text x="460" y="266">6 meses</text>
+      <text x="460" y="288">12 meses</text>
+      <text x="460" y="310">24 meses</text>
+    </g>
+    <text x="60" y="332" font-size="10.5" fill="#f85149">modulo desatualizado e pior que modulo nenhum: produz plano confiante e errado</text>
+
+    <rect x="504" y="214" width="456" height="130" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+    <text x="524" y="240" font-size="13" font-weight="700" fill="#e6edf3">O indicador — dois numeros, cada um mente sozinho</text>
+    <g font-size="11">
+      <text x="524" y="268" fill="#3fb950">leitura alta  +  escrita alta</text><text x="760" y="268" fill="#8b949e">ciclo fechado</text>
+      <text x="524" y="290" fill="#f85149">leitura alta  +  escrita zero</text><text x="760" y="290" fill="#8b949e">o catalogo apodrece</text>
+      <text x="524" y="312" fill="#f85149">leitura zero  +  escrita alta</text><text x="760" y="312" fill="#8b949e">a consulta esta cara demais</text>
+      <text x="524" y="334" fill="#d29922">leitura zero  +  escrita zero</text><text x="760" y="334" fill="#8b949e">a skill nao pegou</text>
+    </g>
+  </g>
+</svg>

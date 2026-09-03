@@ -1,0 +1,5 @@
+# Especificacao de origem, mantida apenas localmente
+prompt*.md
+
+# Sistema
+.DS_Store

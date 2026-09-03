@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="As tres injecoes do modulex: a mesma informacao com autoridade diferente em cada skill">
+  <rect width="1000" height="430" rx="14" fill="#ffffff"/>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace">
+
+    <text x="500" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2328">A mesma informacao, autoridade diferente em cada ponto</text>
+
+    <rect x="392" y="58" width="216" height="66" rx="10" fill="#ddf4ff" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="500" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#0a3069">modulex</text>
+    <text x="500" y="105" text-anchor="middle" font-size="11.5" fill="#59636e">catalogo de problemas resolvidos</text>
+
+    <g stroke="#1f6feb" stroke-width="1.5" fill="none" opacity="0.75">
+      <path d="M420 124 L168 176"/>
+      <path d="M500 124 L500 176"/>
+      <path d="M580 124 L832 176"/>
+    </g>
+
+    <rect x="40" y="176" width="256" height="212" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1.2"/>
+    <text x="168" y="202" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">prodx</text>
+    <rect x="112" y="212" width="112" height="22" rx="11" fill="#fff1e5" stroke="#bc4c00" stroke-width="1"/>
+    <text x="168" y="227" text-anchor="middle" font-size="10.5" fill="#bc4c00">SINAL APENAS</text>
+    <g font-size="11.5" fill="#1f2328">
+      <text x="60" y="258">P3  existe modulo pronto?</text>
+      <text x="60" y="292">P4  fatias e faixa de esforco</text>
+      <text x="60" y="326">P5  modulo_disponivel</text>
+    </g>
+    <g font-size="10.5" fill="#59636e">
+      <text x="60" y="274">nao e evidencia de que o sistema faz</text>
+      <text x="60" y="308">encolhe o escopo minimo</text>
+      <text x="60" y="342">contexto, nunca instrucao</text>
+    </g>
+    <text x="60" y="372" font-size="10.5" fill="#bc4c00">modulo pronto = custo menor, nao funcionalidade existente</text>
+
+    <rect x="316" y="176" width="368" height="212" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1.2"/>
+    <text x="500" y="202" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">sprintx</text>
+    <rect x="422" y="212" width="156" height="22" rx="11" fill="#dafbe1" stroke="#1a7f37" stroke-width="1"/>
+    <text x="500" y="227" text-anchor="middle" font-size="10.5" fill="#1a7f37">CINCO AUTORIDADES</text>
+    <g font-size="11.5">
+      <text x="336" y="258" fill="#1f2328">F1</text><text x="366" y="258" fill="#59636e">o MODULO.md das fatias</text><text x="566" y="258" fill="#0a3069">insumo</text>
+      <text x="336" y="284" fill="#1f2328">F2</text><text x="366" y="284" fill="#59636e">decisoes ja fechadas</text><text x="566" y="284" fill="#0a3069">pauta</text>
+      <text x="336" y="310" fill="#1f2328">F3</text><text x="366" y="310" fill="#59636e">fases e gates do plano</text><text x="566" y="310" fill="#0a3069">rascunho</text>
+      <text x="336" y="336" fill="#1f2328">F5</text><text x="366" y="336" fill="#59636e">convencoes e armadilhas</text><text x="566" y="336" fill="#0a3069">criterio</text>
+      <text x="336" y="362" fill="#1f2328">F6</text><text x="366" y="362" fill="#59636e">artefatos de producao</text><text x="566" y="362" fill="#0a3069">copiar, sob TDD</text>
+    </g>
+
+    <rect x="704" y="176" width="256" height="212" rx="10" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1.2"/>
+    <text x="832" y="202" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">runx</text>
+    <rect x="762" y="212" width="140" height="22" rx="11" fill="#fff1e5" stroke="#bc4c00" stroke-width="1"/>
+    <text x="832" y="227" text-anchor="middle" font-size="10.5" fill="#bc4c00">HIPOTESE APENAS</text>
+    <g font-size="11.5" fill="#1f2328">
+      <text x="724" y="258">E1  cadeia de falha</text>
+      <text x="724" y="292">E1  catalogo de erros</text>
+    </g>
+    <g font-size="10.5" fill="#59636e">
+      <text x="724" y="274">a ordem em que vale olhar</text>
+      <text x="724" y="308">codigo de erro nao e causa</text>
+    </g>
+    <text x="724" y="342" font-size="10.5" fill="#bc4c00">a E1 exige prova.</text>
+    <text x="724" y="358" font-size="10.5" fill="#bc4c00">o plano de fases nao desce.</text>
+
+    <text x="500" y="414" text-anchor="middle" font-size="11" fill="#59636e">o stackx do projeto de destino tem precedencia sobre a convencao herdada — conflito e reportado, nunca resolvido</text>
+  </g>
+</svg>

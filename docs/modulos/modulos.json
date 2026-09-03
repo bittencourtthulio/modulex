@@ -1,0 +1,135 @@
+{
+  "schema": "expx-schema-v1",
+  "kind": "modulo_indice_maquina",
+  "atualizado_em": "2026-09-02",
+  "modulos": [
+    {
+      "id": "whatsapp-uazapi",
+      "problema": "atender cliente por WhatsApp, com caixa de entrada compartilhada pela equipe",
+      "sinonimos": {
+        "pt": [
+          "whatsapp",
+          "zap",
+          "wpp",
+          "atendimento por whatsapp",
+          "inbox de atendimento",
+          "caixa de entrada",
+          "conversa com cliente",
+          "mensagem para cliente",
+          "disparo de mensagem",
+          "qr code do whatsapp",
+          "chatbot de whatsapp",
+          "central de atendimento"
+        ],
+        "en": [
+          "whatsapp",
+          "whatsapp integration",
+          "chat inbox",
+          "shared inbox",
+          "messaging",
+          "instant messaging",
+          "conversation",
+          "message webhook",
+          "qr pairing",
+          "message provider"
+        ],
+        "fornecedores": ["uazapi", "api4com", "openrouter"],
+        "casa": [
+          "instancia",
+          "sessao",
+          "numero conectado",
+          "atendimento",
+          "conversa",
+          "atribuir conversa",
+          "etiqueta",
+          "resposta rapida"
+        ]
+      },
+      "fatias": [
+        {
+          "slug": "nucleo",
+          "tipo": "obrigatoria",
+          "problema": "conectar o numero, receber e enviar mensagem, e atender numa inbox",
+          "cobre": "conexao por QR, webhook de recebimento, envio de texto/midia/reacao/enquete, inbox ao vivo, acoes de chat",
+          "nao_cobre": "API oficial da Meta; outros provedores; outros canais; cadastro de cliente; disparo em massa; relatorio de atendimento; fila automatica",
+          "esforco": "NAO DETERMINADO"
+        },
+        {
+          "slug": "organizacao",
+          "tipo": "opcional",
+          "problema": "quem atende o que: atribuicao, etiquetas, notas e lembretes",
+          "cobre": "atribuicao, historico, squad, transferencia, etiquetas, respostas rapidas, notas, lembretes",
+          "nao_cobre": "distribuicao automatica por regra ou rodizio; SLA e escalonamento; horario de atendimento; pesquisa de satisfacao",
+          "esforco": "NAO DETERMINADO"
+        },
+        {
+          "slug": "ia",
+          "tipo": "opcional",
+          "problema": "analisar a conversa e sugerir resposta",
+          "cobre": "analise em tempo real com card, copiloto de resposta, agente configuravel com playground",
+          "nao_cobre": "resposta automatica sem humano no meio; treinamento de modelo proprio; base vetorial",
+          "esforco": "NAO DETERMINADO"
+        },
+        {
+          "slug": "ligacoes",
+          "tipo": "opcional",
+          "problema": "ligar por voz para o contato da conversa",
+          "cobre": "botao de ligar, ramal/SIP, webhook de gravacao — via API4Com",
+          "nao_cobre": "chamada de voz ou video pelo proprio WhatsApp; URA; fila de voz; transcricao da ligacao",
+          "esforco": "NAO DETERMINADO"
+        },
+        {
+          "slug": "grupos",
+          "tipo": "opcional",
+          "problema": "gerenciar grupos de WhatsApp",
+          "cobre": "informacoes do grupo, metadados, participantes, mensagens e eventos",
+          "nao_cobre": "moderacao automatica; entrada em grupo por convite em massa. Grupos so chegam a inbox principal quando a instancia esta marcada para receber",
+          "esforco": "NAO DETERMINADO"
+        },
+        {
+          "slug": "notificacoes",
+          "tipo": "opcional",
+          "problema": "notificar o cliente automaticamente por gatilho",
+          "cobre": "gatilhos, templates, historico, agendamento",
+          "nao_cobre": "opt-out do destinatario e limitacao de taxa — e esta e a borda mais perigosa do modulo: enviar para quem nao tem relacao com o remetente e o que faz um numero ser banido",
+          "esforco": "NAO DETERMINADO"
+        }
+      ],
+      "repo": "https://github.com/bittencourtthulio/whatsapp-uazapi-integration",
+      "stack_essencial": [
+        "endpoint publico alcancavel pela internet, sem autenticacao de sessao",
+        "o endpoint responde 2xx em todo caminho, inclusive no payload ignorado",
+        "dois segredos de autenticacao distintos: um cria a conexao, outro opera",
+        "normalizacao de destinatario que preserva o identificador de grupo",
+        "ordem de tratamento dos eventos: reacao, edicao, voto, mensagem",
+        "cache proprio da midia recebida",
+        "banco para conversas e mensagens"
+      ],
+      "stack_herdada": [
+        "react 18 + typescript + vite",
+        "supabase: postgres com rls, edge functions deno, realtime",
+        "coluna de tenancy chamada company_id",
+        "funcao de tenancy get_user_company_ids com privilegio elevado",
+        "contexto de cliente ativo activeCompany.company_id",
+        "formato de resposta success-data",
+        "shadcn/ui + tailwind com utilitario cn",
+        "hooks useAuth e use-toast",
+        "interface em pt-BR",
+        "publicacao de tabela no realtime do supabase",
+        "grant explicito por tabela ao papel autenticado",
+        "migracoes somente-adicao"
+      ],
+      "pre_requisitos_bloqueantes": [
+        "conta no fornecedor Uazapi com segredo de administracao",
+        "um numero de WhatsApp para parear",
+        "dominio publico alcancavel pela internet",
+        "banco com controle de acesso por linha e funcoes de servidor",
+        "entidades de base no banco de destino: clientes/organizacoes, usuarios, vinculo"
+      ],
+      "verificado_em": "2026-08-24",
+      "verificado_contra": "documentacao publica da uazapi em 2026-08-24",
+      "extraido_de": "Expx Flow — CRM multi-tenant com modulo WhatsApp em producao",
+      "status": "ativo"
+    }
+  ]
+}
