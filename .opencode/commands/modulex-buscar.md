@@ -67,3 +67,31 @@ produz plano confiante e errado. Rode /modulex-verificar antes de injetar.
 - **Módulo pronto não é evidência de que o sistema já faz.** Se quem chamou foi o P3 do prodx, diga isso explicitamente: é sinal de custo menor, não de existência.
 - Registre também os termos que **não** acharam nada — é o que impede a próxima pessoa de repetir a busca.
 - Pedido vago demais: peça o problema em uma frase. Não busque por adivinhação — termo errado devolve `NAO EXISTE` falso, e falso negativo aqui custa um plano inteiro.
+
+## O atalho determinístico
+
+A busca também existe como script, e ela lê **apenas** o `modulos.json` — nunca clona repositório, nunca abre `MODULO.md`, nunca toca a rede:
+
+```bash
+python3 scripts/buscar.py "<problema em linguagem natural>"
+```
+
+Ele já imprime o degrau do catálogo, o `atualizado_em`, o `não cobre` de cada fatia e o aviso de vencimento.
+
+## Candidato aparece marcado
+
+Módulo com `status: candidato` é resultado legítimo da busca e vem **marcado como tal**. A informação mais valiosa dele é que *ele existe*: alguém aqui já integrou isso e o registro está pela metade, o que manda conversar com quem fez em vez de começar do zero.
+
+O que ele **não** pode é virar rascunho de sprint na F3 nem artefato copiado na F6 (regra 13). Diga isso na resposta, sempre — candidato apresentado como módulo pronto é a forma mais rápida de produzir plano confiante e errado.
+
+## Quando não acha
+
+Registre no `LACUNAS.md` e, se o catálogo for compartilhado, abra a issue de lacuna:
+
+```bash
+python3 scripts/lacuna_issue.py "<termo procurado>"
+```
+
+Sem `--confirmar` ele só mostra o que faria. Termo repetido é o que prioriza a próxima extração — e distinguir "não existe módulo" de "faltava sinônimo num módulo que já existe" é trabalho manual que vale o esforço.
+
+**Catálogo inalcançável não registra lacuna.** "Não há catálogo" e "há catálogo e ele não cobre isto" são respostas diferentes (D15).

@@ -115,6 +115,8 @@ No runx, a cadeia de falha do módulo é a melhor lista de suspeitos que existe 
 | M2 | Extração | `MODULO.md` novo + linha no `INDICE.md` | feature entregue que integrou um terceiro |
 | M3 | Verificação | `MODULO.md` revalidado, `verificado_em` novo | por vencimento ou sob suspeita |
 
+A **esteira** atravessa a M2: um hook enfileira candidato ao fim do trabalho, e a M2 promove. Ela não é um estágio novo — é a M2 com a metade mecânica já preenchida.
+
 ### M0 — Consulta
 
 **A operação mais frequente e a que precisa ser barata.** Dado um problema em linguagem natural, existe módulo, e que fatias ele tem? Responde no chat, **não gera arquivo**.
@@ -151,6 +153,42 @@ Módulo desatualizado é **pior que módulo nenhum**: sem módulo, o sprintx lê
 
 Roteiro: `references/03-verificacao.md`.
 
+## A esteira: o catálogo cresce até a metade sozinho
+
+A M2 é o estágio que fecha o ciclo e é o que ninguém roda — não por preguiça, por custo. No fim de uma entrega, ninguém tem apetite para preencher catorze seções à mão.
+
+A esteira resolve a metade barata desse custo. Ela **não extrai módulo: enfileira candidato** (D17).
+
+| O script observa sozinho | Só sai com julgamento |
+|---|---|
+| **8** faixa de esforço — datas reais de commit | **13** lacunas: o que se descobriu na marra |
+| **10** inventário — arquivos e contagem | **4** o que **não** cobre |
+| **7** pré-requisitos — variáveis de credencial | **6** essencial × herdado |
+| **12** erros — códigos tratados no código | **5** decisões, com alternativa descartada |
+| **14** procedência — branch, commit, data | **1** o problema na linguagem de quem pede |
+
+A divisão é limpa porque o script é bom exatamente onde o humano é ruim. E ela fecha a D6: o módulo zero nasceu sem faixa de esforço porque ninguém cronometrou — com a esteira, esse passa a ser o campo mais confiável do arquivo.
+
+**O que a janela do git prova é calendário, não esforço.** O candidato grava a janela com o aviso junto; a seção 8 só nasce quando um humano confirma que a janela corresponde ao trabalho. Número de máquina não é mais verdadeiro que número de humano — é só mais fácil de acreditar.
+
+**Candidato não é módulo.** Ele aparece na M0 marcado, porque a informação mais valiosa dele é que *ele existe*: manda conversar com quem fez, em vez de começar do zero. O que ele não pode é virar rascunho de sprint na F3 nem artefato copiado na F6 (regra 13).
+
+Roteiro: `references/06-esteira.md`.
+
+## O catálogo em nuvem é o GitHub, e nada além dele
+
+Sem servidor, sem banco, sem serviço próprio (D16). Em três pontos o primitivo nativo é melhor que a alternativa construída:
+
+- **o PR é o gate** — a aprovação humana deixa de ser fluxo inventado e vira o caminho de menor resistência;
+- **a issue é a lacuna global**, com 👍 como voto: em meses, a fila de extração está priorizada por demanda real e pública;
+- **o Actions é o cron do vencimento**, que transforma "alguém devia revisar" em issue com nome e prazo.
+
+O contrato passa a ser **teste que reprova merge**, não norma escrita. A rede acontece num lugar só — `scripts/sincronizar.py` deixa o catálogo no degrau 2, e a M0 continua offline.
+
+**O que se perde, declarado:** telemetria de leitura agregada. A escrita se mede pelos PRs; a leitura, não.
+
+Roteiro: `references/07-publicacao.md`.
+
 ## Fatias
 
 Um módulo grande é fatiável, e a fatia é **decisão de produto, não técnica**. "WhatsApp completo" e "só receber e responder mensagem" são escopos mínimos de tamanhos muito diferentes, e essa distinção governa o P4 do prodx.
@@ -163,7 +201,9 @@ Uma fatia opcional só existe se puder ser **não instalada sem quebrar o núcle
 
 ## O contrato: o que é um módulo
 
-Um módulo é um repositório que atende ao contrato do modulex. O contrato é um arquivo **`MODULO.md` na raiz do repositório do módulo**, com frontmatter **expx-schema v1** (chaves em `snake_case` sem acento, enums minúsculos sem acento, datas em ISO, chave nunca omitida) e `kind: modulo`.
+Um módulo é um repositório que atende ao contrato do modulex. O contrato é um arquivo **`MODULO.md` na raiz do repositório do módulo**, com frontmatter **expx-schema v1** (chaves em `snake_case` sem acento, enums minúsculos sem acento, datas em ISO, chave nunca omitida), `kind: modulo`, um `namespace` e um `status` entre `ativo`, `candidato` e `obsoleto`.
+
+E ele é **testado**: `scripts/validar_modulo.py` cobra as 14 seções, o `não cobre` não-vazio, as duas colunas da seção 6, a contrapartida de todo `NAO DETERMINADO` na seção 13, e a coerência do `status`. Roda na máquina e no PR.
 
 As catorze seções obrigatórias:
 
@@ -201,9 +241,19 @@ O catálogo vive num **repositório irmão do ecossistema**, e não em cada proj
 ```
 docs/modulos/
   INDICE.md              índice legível, uma linha por módulo, append-only
-  modulos.json           índice máquina: id, problema, sinonimos, fatias, repo,
-                         stacks, esforco, verificado_em
+  modulos.json           índice máquina: id, namespace, problema, sinonimos,
+                         fatias, repo, stacks, esforco, verificado_em
   LACUNAS.md             o que o catálogo não cobre e já foi pedido
+  mod/<ns>/<id>/         espelho derivado do MODULO.md, para a M1 ler de uma vez
+scripts/                 gate, validador, detector, busca, reindexação, publicação
+.github/workflows/       o contrato como teste: valida no PR, reindexa, cobra M3
+```
+
+E, no projeto que consome:
+
+```
+.expx/modulex/docs/modulos/   cópia sincronizada do catálogo (degrau 2)
+.expx/modulex/fila/<slug>.json  candidatos detectados — LOCAL, nunca publicado
 ```
 
 E, em cada repositório de módulo:
@@ -249,11 +299,16 @@ Roteiro completo: `references/05-catalogo.md`. O raciocínio, com os lados desca
 | M2 pedida sem plano, QA ou relatório do trabalho | extrai o que dá, e o que faltar vira `NAO DETERMINADO` nas lacunas |
 | módulo com `verificado_em` vencido | M3 verificação |
 | M3 encontrou divergência com a API atual | atualiza o `MODULO.md`, registra na procedência, e avisa quem consumiu o módulo desde a última verificação |
+| hook detectou integração de terceiro no fim do trabalho | enfileira **candidato** em `.expx/modulex/fila/`. Não extrai, não publica, não fala se não achou nada |
+| M2 rodada sobre candidato com julgamento ainda aberto | grava `status: candidato`. Ele é buscável e marcado, e não entra na F3 nem na F6 |
+| publicação pedida e o gate acusou segredo | **para**. Gira o segredo primeiro; nada é enviado. Push protection no remoto é tarde demais |
+| catálogo do GitHub fora do ar na sincronização | a cópia local anterior continua valendo. Rede fora nunca bloqueia (regra 11) |
+| colisão de `id` entre catálogo privado e público | resolve por `<namespace>/<id>`, com o privado vencendo, e **declara** qual venceu (D18) |
 
 - **Vários módulos possíveis para a mesma busca**: lista com fatias e esforço, e **não escolhe** — a escolha é do sprintx.
 - **Estágio adiantado**: a skill explica o que falta e executa o pendente.
 
-## As 11 regras invioláveis
+## As 13 regras invioláveis
 
 1. **O modulex não escolhe fornecedor nem decide se usa; ele informa.** Módulo no catálogo é oferta, não recomendação. Quando há mais de um, lista os dois e cala.
 2. **O plano do módulo é rascunho a adaptar; o artefato de produção é para copiar, não reescrever** — e ambos passam pela auditoria da F5 e pelo TDD da F6. Artefato copiado sem teste é dívida, não atalho.
@@ -266,6 +321,8 @@ Roteiro completo: `references/05-catalogo.md`. O raciocínio, com os lados desca
 9. **No prodx o módulo é sinal, nunca decisão técnica no briefing.** A regra 10 do prodx continua valendo integralmente.
 10. **No runx a armadilha é hipótese, nunca causa comprovada.** A E1 exige prova; o catálogo de erros diz onde olhar primeiro.
 11. **A ausência do modulex nunca bloqueia nenhuma outra skill.** Sem catálogo, o sprintx planeja do zero como sempre planejou.
+12. **O que sobe para o catálogo é extraído, nunca raspado — e nada sobe sem aprovação humana.** Anonimizar falha aberto: o que o padrão não pegou vai junto, e em repositório público não volta. Extrair falha fechado: o que não está no schema nunca foi copiado. O gate de segredo é a última linha, não a primeira, e roda na máquina **antes** do push.
+13. **Candidato não é módulo.** Módulo com seção de julgamento em aberto é buscável e marcado, e não vira rascunho de sprint na F3 nem artefato copiado na F6. Hook enfileira; quem extrai é a M2, com humano.
 
 Regra transversal: caminhos sempre relativos. Nenhum caminho absoluto em artefato ou saída.
 
@@ -292,7 +349,9 @@ Regra transversal: caminhos sempre relativos. Nenhum caminho absoluto em artefat
 | `references/02-extracao.md` | M2: de quais artefatos sai cada seção do `MODULO.md`, e o que fazer com o que falta |
 | `references/03-verificacao.md` | M3: o que torna um módulo obsoleto, prazos por tipo de campo, o que revalidar |
 | `references/04-contrato.md` | O contrato campo a campo, com o que é obrigatório e o que aceita `NAO DETERMINADO` |
-| `references/05-catalogo.md` | A cadeia de resolução do endereço do catálogo, o que cada estágio alcança, e o degrau que não bloqueia |
+| `references/05-catalogo.md` | A cadeia de resolução do endereço do catálogo, a fusão por namespace, e o degrau que não bloqueia |
+| `references/06-esteira.md` | A esteira: detecção, fila de candidatos, e a fronteira entre o que o script observa e o que exige julgamento |
+| `references/07-publicacao.md` | O catálogo no GitHub: o PR como gate, o CI, a issue de lacuna, e o que se perde |
 | `references/integracao/prodx.md` | P3, P4 e P5 — sinal, fatias, e o campo do briefing |
 | `references/integracao/sprintx.md` | F1, F2, F3, F5 e F6 — as cinco injeções e suas autoridades |
 | `references/integracao/runx.md` | E1 — cadeia de falha como hipótese |
@@ -313,6 +372,8 @@ Regra transversal: caminhos sempre relativos. Nenhum caminho absoluto em artefat
 | `/modulex-injetar` | M1: carrega um módulo (ou fatias dele) na base de conhecimento do trabalho atual |
 | `/modulex-extrair` | M2: cria um módulo novo a partir de uma feature já entregue |
 | `/modulex-verificar` | M3: revalida um módulo contra a realidade atual da API |
+| `/modulex-publicar` | Publica um `MODULO.md` no catálogo, via PR, com o gate rodando antes do push |
+| `/modulex-sincronizar` | Puxa o catálogo do GitHub para a cópia local (degrau 2). É o único ponto que toca a rede |
 
 ## Ambiguidades
 

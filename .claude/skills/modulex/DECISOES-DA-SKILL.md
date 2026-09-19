@@ -438,3 +438,184 @@ próxima extração.
 pacote publicado, por exemplo — ele entra como degrau, não substitui a cadeia.
 Se a variável de ambiente se provar o degrau usado em 100% dos casos reais,
 os degraus 2 e 3 viram legado e a cadeia encolhe.
+
+---
+
+## D16 — O catálogo em nuvem é o GitHub, e nada além dele
+
+**Ambiguidade:** a D1 decidiu catálogo compartilhado e a D15 decidiu como
+achá-lo no disco. Nenhuma das duas disse onde ele **vive** quando atravessa
+organizações. Um catálogo que só existe na máquina de quem extraiu não
+atravessa nada.
+
+**Os três lados:**
+
+*Serviço próprio: banco relacional com busca vetorial, mais API.* A favor:
+busca semântica de verdade, telemetria das duas metades do indicador,
+particionamento fácil quando crescer. Contra — e é decisivo: é
+infraestrutura para manter, com custo, chave, uptime e alguém de plantão.
+Uma skill de conhecimento que exige operação de plataforma morre na semana
+em que ninguém renova o cartão.
+
+*Arquivo num storage qualquer, sem revisão.* A favor: simplicidade máxima,
+um `PUT` e acabou. Contra: não tem revisão, não tem histórico, não tem como
+recusar o que não devia entrar. Catálogo sem porta é catálogo que recebe
+segredo no primeiro mês.
+
+*GitHub, e só ele.* A favor: repositório para a fonte da verdade, PR para a
+aprovação humana, Actions para o gate e o cron, issues para as lacunas com
+voto, raw com CDN para a leitura, secret scanning e push protection de
+graça. Nada a manter, e já está instalado na máquina de todo mundo.
+Contra: não conta leitura, e o raw tem cache de alguns minutos.
+
+**Decisão: GitHub, e nada além dele.**
+
+**Por quê:** em três pontos o primitivo nativo não é um substituto pior, é
+melhor. **O PR é o gate** — o que seria um fluxo inventado que todo mundo
+pularia vira o caminho de menor resistência. **A issue é a lacuna global**,
+com voto embutido e visível para quem está de fora, coisa que o arquivo
+local nunca fez. **O Actions é o cron do vencimento**, que transforma
+"alguém devia revisar" em issue com nome e prazo.
+
+**O que se perde, declarado:** telemetria de leitura agregada. A escrita se
+mede pelos PRs; a leitura, não. Sobra contagem local e as issues de lacuna
+como proxy — distingue bem o `zero/alta` e mal o `alta/zero` do `zero/zero`.
+Fica registrado como limitação conhecida, não como coisa a esconder.
+
+**O espelho, e a tensão que ele cria:** o `MODULO.md` mora com o módulo
+(04-contrato). Para a M1 ser uma leitura só, o catálogo guarda uma **cópia
+declarada como derivada** em `mod/<namespace>/<id>/MODULO.md`. O campo
+`repo` continua sendo a origem, e reconciliar espelho com origem é dever da
+M3. É uma duplicação consciente, paga para não clonar repositório na
+injeção.
+
+**O que revisa:** se a busca lexical começar a errar por vocabulário — e a
+issue de lacuna é o que mostra isso — entra uma camada de vetores
+**commitados**, recalculados por Action a cada merge. Continua sendo
+arquivo em repositório, não banco. Se um dia a leitura precisar mesmo ser
+medida, o acréscimo é um endpoint burro, não uma plataforma.
+
+---
+
+## D17 — O hook enfileira candidato; quem extrai é a M2
+
+**Ambiguidade:** a M2 é o estágio que fecha o ciclo e é o que ninguém roda,
+porque preencher catorze seções à mão no fim de uma entrega não cabe no
+apetite de ninguém. A automação é óbvia. O que ela automatiza, não.
+
+**Os dois lados:**
+
+*O hook extrai o módulo inteiro.* A favor: o catálogo cresce sozinho, e o
+indicador de escrita sai do zero sem depender de disciplina humana.
+Contra — e é decisivo: um script sem humano preenche os catorze campos por
+inferência, e campo inventado é pior que módulo inexistente. Em especial a
+faixa de esforço: o P4 do prodx encolhe escopo com base nela, e um número
+plausível vindo de máquina é mais perigoso que um `NAO DETERMINADO`,
+porque ninguém desconfia dele.
+
+*O hook enfileira candidato, e a M2 promove.* A favor: o script escreve só
+o que observou, e o que exige julgamento fica explicitamente em aberto.
+Contra: ainda exige um humano em algum momento, e a fila pode encher de
+candidato que ninguém promove.
+
+**Decisão: o hook enfileira candidato. A extração continua sendo M2, com
+humano.**
+
+**Por quê:** a divisão de trabalho é limpa porque o script é bom exatamente
+onde o humano é ruim. Datas de commit, inventário de arquivos, variáveis de
+credencial e códigos de erro tratados são observação — e o humano não
+lembra nenhuma delas duas semanas depois. Já o que **não** cobre, o que é
+essencial × herdado, e o que se descobriu na marra são julgamento, e
+nenhuma varredura os encontra.
+
+**O efeito colateral bom:** a esteira fecha a D6. O módulo zero nasceu sem
+faixa de esforço porque ninguém cronometrou; com a esteira, esse passa a
+ser o campo mais confiável do arquivo.
+
+**O que a janela do git prova:** calendário entre o primeiro e o último
+commit. **Não** horas trabalhadas, **não** estimativa. O candidato grava a
+janela com o aviso junto, e a seção 8 só nasce quando um humano confirma
+que a janela corresponde ao trabalho. Número de máquina não é mais
+verdadeiro que número de humano — é só mais fácil de acreditar.
+
+**O que revisa:** se a fila encher de candidato não promovido, o defeito é
+do limiar de detecção ou do custo da promoção, e se mede antes de mexer:
+candidato enfileirado × candidato promovido é o mesmo indicador de duas
+metades, aplicado à esteira.
+
+---
+
+## D18 — Namespace no módulo, e precedência entre catálogos
+
+**Ambiguidade:** a D15 decidiu que catálogo **não se funde** — o primeiro
+degrau vence inteiro. O modelo real, porém, é um catálogo público curado
+mais um privado por organização, e quem tem os dois quer os dois.
+
+**Os dois lados:**
+
+*Manter a regra: um catálogo por vez.* A favor: zero ambiguidade, e a regra
+já está escrita e entendida. Contra: obriga a escolher entre o conhecimento
+da casa e o do ecossistema, quando a resposta útil quase sempre é a união.
+
+*Fundir com namespace e precedência declarada.* A favor: dá os dois, e a
+colisão deixa de ser silenciosa. Contra: mais para explicar, e um `id` sem
+namespace passa a ser ambíguo.
+
+**Decisão: a chave global é `<namespace>/<id>`, e em colisão o privado
+vence o público.**
+
+**Por quê:** o motivo da regra original era a ambiguidade — dois
+`modulos.json` com o mesmo `id` e conteúdos diferentes. O namespace elimina
+o motivo sem abandonar o cuidado: não há colisão silenciosa, há precedência
+declarada, e a M0 diz de qual namespace veio cada resultado.
+
+**O privado vence porque** o módulo da casa conhece as convenções da casa,
+e porque um módulo privado que alguém extraiu deliberadamente é evidência
+mais forte que o homônimo público.
+
+**O que revisa:** se aparecer um terceiro catálogo — de cliente, de
+parceiro — a `precedencia` do `modulos.json` vira lista ordenada de
+verdade, em vez das duas posições de hoje.
+
+---
+
+## D19 — Extrair, não anonimizar
+
+**Ambiguidade:** publicar conhecimento tirado de sistema de cliente exige
+tirar o que identifica o cliente. Como.
+
+**Os dois lados:**
+
+*Anonimizar: pegar o artefato real e raspar os identificadores.* A favor:
+preserva o artefato como ele é, com todas as cicatrizes, e é o caminho
+óbvio. Contra — e é decisivo: **falha aberto.** Tudo que o padrão não pegou
+vai junto. Token num comentário, subdomínio num fixture, nome de tabela que
+entrega o produto do cliente. E em repositório público, o que falhou
+aberto não fecha depois.
+
+*Extrair: construir um documento novo a partir de um schema fixo.* A favor:
+**falha fechado.** O que não está no schema nunca viaja — não porque foi
+limpo, mas porque nunca foi copiado. Contra: perde fidelidade; o artefato
+literal não sobe por padrão.
+
+**Decisão: extrair. O gate de segredo é a última linha, não a primeira.**
+
+**Por quê:** a assimetria decide. Errar para menos, numa extração, custa um
+módulo menos completo. Errar para mais, numa anonimização, custa um vazamento
+irreversível num repositório forkado e indexado.
+
+**O encaixe com o contrato:** a coluna **herdado** da seção 6 já é, por
+definição, a parte que não deve viajar literal. Então a normalização não é
+um filtro externo colado depois — é o contrato fazendo o que ele já fazia.
+`company_id` vira `{{coluna_tenancy}}` pela mesma razão que ele está na
+coluna herdada: é escolha da casa de origem, não exigência do terceiro.
+
+**O que o gate ainda faz:** prefixo conhecido de provedor, entropia em
+atribuição com nome de segredo, CPF e CNPJ com dígito verificador válido,
+telefone, email fora de domínio de exemplo, host não reconhecido, caminho
+absoluto. Ele roda na máquina **antes** do push e de novo no PR — só no CI
+seria fechar a porta depois de o dado já ter saído da máquina.
+
+**O que revisa:** se a perda de fidelidade se mostrar cara — módulos que
+não dizem o suficiente para serem usados — o caminho não é afrouxar o gate,
+é enriquecer o schema. Campo novo no contrato é revisável; vazamento não.

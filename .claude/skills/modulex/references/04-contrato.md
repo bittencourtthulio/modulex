@@ -12,6 +12,7 @@ Padrão **expx-schema v1**: chaves em `snake_case` sem acento, enums minúsculos
 kind: modulo
 schema: expx-schema-v1
 id: <slug-do-modulo>
+namespace: <publico | slug-da-org>
 problema: <uma linha, na linguagem de quem pede>
 fornecedores: [<nome>, ...]
 fatias: [<slug-da-fatia>, ...]
@@ -22,10 +23,33 @@ esforco: <faixa | NAO DETERMINADO>
 verificado_em: <AAAA-MM-DD>
 verificado_contra: <versao ou "documentacao publica em <data>">
 extraido_de: <sistema de origem>
-status: <ativo | obsoleto>
+status: <ativo | candidato | obsoleto>
 ```
 
+`namespace` é o que permite fundir o catálogo privado da organização com o público sem ambiguidade: a chave global é `<namespace>/<id>`, e em colisão o privado vence (D18). Módulo que nasce no catálogo compartilhado usa `publico`.
+
 `status: obsoleto` mantém o módulo no catálogo. Módulo obsoleto continua sendo achado pela M0, que responde "existiu, está obsoleto, motivo" — apagar faz a próxima pessoa refazer a descoberta.
+
+## Os três status, e o que cada um autoriza
+
+| | `candidato` | `ativo` | `obsoleto` |
+|---|---|---|---|
+| aparece na M0 | sim, **marcado** | sim | sim, com o motivo |
+| entra na F1 do sprintx | como contexto | sim | como histórico |
+| vira rascunho de sprint na F3 | **não** | sim | não |
+| tem artefato copiado na F6 | **não** | sim | não |
+
+**`candidato`** é o módulo que a esteira enfileirou e que ainda tem seção de
+julgamento em aberto (`references/06-esteira.md`). Ele aparece na busca porque
+a informação mais valiosa dele é que **ele existe**: "alguém aqui já integrou
+isso, e o registro está pela metade" manda conversar com quem fez, em vez de
+começar do zero. O que ele não pode é virar plano.
+
+A fronteira é mecânica e o validador a cobra: as seções **7, 8, 9, 10 e 12**
+aceitam `NAO DETERMINADO` e o módulo continua `ativo` — são as que este
+contrato já declarava como opcionais em valor. As de julgamento — **2, 3, 5,
+6, 11 e 13** — em `NAO DETERMINADO` fazem dele `candidato`, e `status: ativo`
+com qualquer uma delas aberta **reprova no CI**.
 
 ## As catorze seções
 
@@ -184,8 +208,17 @@ Não se chuta, não se estima por analogia, não se infere do que "costuma ser".
 | Arquivo | Onde | Quem escreve |
 |---------|------|--------------|
 | `MODULO.md` | raiz do repositório do módulo | a M2, revisada por humano |
+| `MODULO.md` (espelho) | `mod/<namespace>/<id>/` no catálogo | a publicação; é **derivado**, e a M3 reconcilia com a origem |
 | `erros.json` | repositório do módulo, opcional | a M2 |
 | linha no `INDICE.md` | repositório do catálogo | a M2 |
 | entrada no `modulos.json` | repositório do catálogo | a M2 e a M3 |
 
 O `MODULO.md` mora **com o módulo**, não com o catálogo. O catálogo indexa; o módulo se descreve. Assim um módulo pode ser publicado, clonado ou compartilhado sem o catálogo junto — e continua se explicando.
+
+O espelho no catálogo não contradiz isso: ele existe para que a M1 seja **uma leitura só**, em vez de clonar repositório para injetar. O campo `repo` continua sendo a origem, e reconciliar espelho com origem é dever da M3 (D16).
+
+## O contrato é testado, não só escrito
+
+`scripts/validar_modulo.py` verifica este arquivo inteiro: frontmatter completo e no schema, as 14 seções presentes, `não cobre` preenchido, seção 6 em duas colunas, todo `NAO DETERMINADO` com contrapartida na seção 13, `status` coerente com as seções abertas, e nenhum caminho absoluto. Roda na máquina e no PR.
+
+Regra que a escrita sozinha nunca garantiu, e o teste garante: **`não cobre` vazio não entra no catálogo.**

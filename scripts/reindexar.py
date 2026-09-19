@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from _comum import (  # noqa: E402
     NAO_DETERMINADO,
+    STATUS_VALIDOS,
     Relatorio,
     carregar_json,
     gravar_json,
@@ -35,6 +36,14 @@ from _comum import (  # noqa: E402
     rel,
     resolver_catalogo,
     vencido_em,
+)
+
+# Chave nunca omitida (expx-schema v1). Entrada acrescentada a mao ao
+# modulos.json sem uma delas e o defeito mais provavel do indice.
+OBRIGATORIAS = (
+    "id", "namespace", "problema", "sinonimos", "fatias", "repo",
+    "stack_essencial", "stack_herdada", "pre_requisitos_bloqueantes",
+    "verificado_em", "verificado_contra", "extraido_de", "status",
 )
 
 DERIVADOS = (
@@ -176,6 +185,20 @@ def main(argv: list[str]) -> int:
                 entrada[chave] = esperado
 
     for ident, entrada in por_id.items():
+        for chave in OBRIGATORIAS:
+            if chave not in entrada or entrada[chave] in (None, ""):
+                rep.erro(
+                    "chave-omitida",
+                    f"{ident}:{chave}",
+                    f"`{chave}` ausente ou vazia no indice. No expx-schema v1 a chave "
+                    "nunca e omitida — sem valor, NAO DETERMINADO ou lista vazia.",
+                )
+                if escrever and chave == "namespace":
+                    entrada[chave] = "publico"
+        if str(entrada.get("status", "")) not in STATUS_VALIDOS:
+            rep.erro("status", f"{ident}:status",
+                     f"status `{entrada.get('status')}` invalido. Use um de "
+                     f"{', '.join(STATUS_VALIDOS)}.")
         if ident not in vistos and espelhos(pasta):
             rep.aviso("sem-espelho", ident, "entrada no indice sem MODULO.md espelhado em "
                                             "`mod/`. A M1 vai ter que buscar no repo do modulo.")

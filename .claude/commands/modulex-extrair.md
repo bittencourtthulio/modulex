@@ -17,6 +17,20 @@ O trabalho de origem está em `$ARGUMENTS`. Se vier vazio, pergunte qual feature
 
 Feature entregue e nunca usada em produção não vira módulo: vira exemplo. O que dá valor ao módulo são as cicatrizes, e código que não rodou não tem nenhuma.
 
+## Comece pela fila, se houver
+
+```bash
+ls .expx/modulex/fila/
+```
+
+Se existir `.expx/modulex/fila/<slug>.json`, **metade do trabalho já está feita**: a esteira observou as datas reais de commit, os arquivos, as variáveis de credencial, os hosts e os códigos de erro tratados. Leia esse arquivo antes de perguntar qualquer coisa.
+
+O que ele **não** traz é o que exige julgamento, e é justamente o que dá valor ao módulo: o que **não** cobre, o que é essencial × herdado, as decisões de escopo, e as lacunas descobertas na marra. Essas você levanta com o humano.
+
+**A janela do git é calendário, não esforço.** O arquivo traz `janela` com primeiro e último commit. Isso vira faixa de esforço da seção 8 **só se** o humano confirmar que a janela corresponde ao trabalho. Sem essa confirmação, `NAO DETERMINADO` (regra 6) — número de máquina não é mais verdadeiro que número de humano, é só mais fácil de acreditar.
+
+Não havendo fila, siga do zero pelo roteiro abaixo. Ver `references/06-esteira.md`.
+
 ## Roteiro
 
 1. **Reúna os artefatos do trabalho**: plano, orquestrador, `00-DECISOES.md`, `00-LACUNAS.md`, QA, `ENTREGA.md`, relatório de uso, ocorrências posteriores.
@@ -26,7 +40,13 @@ Feature entregue e nunca usada em produção não vira módulo: vira exemplo. O 
 5. **Declare as fatias** e teste cada opcional: pode não ser instalada sem quebrar o núcleo? Se não pode, é núcleo.
 6. **Escreva o "não cobre"** de cada fatia. Nunca vazio (regra 7).
 7. **Sanitize**: nenhum token, domínio de cliente, telefone real ou referência de projeto. Módulo é conhecimento compartilhado — segredo que entra aqui vaza para todos os destinos.
-8. **Grave o `MODULO.md`** na raiz do repositório do módulo, de `assets/TEMPLATE-MODULO.md`.
+8. **Grave o `MODULO.md`** na raiz do repositório do módulo, de `assets/TEMPLATE-MODULO.md`. Defina `namespace` e `status`: se restou seção de julgamento em aberto, é `candidato` — buscável e marcado, não injetável na F3 nem na F6 (regra 13).
+
+   Valide antes de seguir:
+
+   ```bash
+   python3 scripts/validar_modulo.py <caminho/MODULO.md>
+   ```
 9. **Atualize o catálogo**: linha no `INDICE.md`, entrada no `modulos.json`, e remova do `LACUNAS.md` a lacuna que este módulo fecha.
 
    A M2 **escreve**, e escrita exige degrau gravável. Se o catálogo resolveu
@@ -49,7 +69,7 @@ Feature entregue e nunca usada em produção não vira módulo: vira exemplo. O 
 Ao terminar, reporte:
 
 ```
-Modulo extraido: <id>
+Modulo extraido: <namespace>/<id>  [<ativo | candidato>]
 Origem: <trabalho>, <sistema>, <data>
 Fatias: <n> (<nucleo> + <n> opcionais)
 Secoes NAO DETERMINADO: <quais, e o que fecharia cada uma>
@@ -57,3 +77,5 @@ Catalogo atualizado: INDICE.md, modulos.json, LACUNAS.md
 ```
 
 A lista de `NAO DETERMINADO` não é vergonha: é o mapa do que o módulo ainda precisa. Módulo com lacuna declarada é honesto; módulo com campo inventado é perigoso.
+
+Para publicar no catálogo compartilhado, `/modulex-publicar`. O gate de segredo roda na máquina **antes** de qualquer push.

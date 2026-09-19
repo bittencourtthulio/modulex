@@ -66,3 +66,19 @@ Os dois números do ciclo vêm do memox. Sem memox, reporte o que o `INDICE.md` 
 Diga qual comando roda: `/modulex-buscar`, `/modulex-injetar`, `/modulex-extrair` ou `/modulex-verificar`.
 
 Não escolha módulo por ninguém: se houver mais de um candidato, liste e pergunte (regra 1).
+
+## Reporte também a esteira
+
+Além dos dois números do indicador, diga em uma linha cada:
+
+- **Candidatos na fila local:** `ls .expx/modulex/fila/` — quantos foram detectados e nunca promovidos. Fila que só cresce significa que a promoção está cara demais, e é o mesmo diagnóstico de duas metades aplicado à esteira.
+- **Módulos por status:** ativos, candidatos, obsoletos. Candidato é buscável e não injetável (regra 13).
+- **Vencidos e vencendo:**
+
+  ```bash
+  python3 scripts/vencidos.py
+  ```
+
+- **Degrau do catálogo e `atualizado_em`**, sempre. O defeito mais provável desta skill depois de instalada é alguém consultar um catálogo velho sem saber.
+
+Se o catálogo for compartilhado e a sincronização estiver velha, ofereça `/modulex-sincronizar` — e lembre que rede fora nunca bloqueia (regra 11).

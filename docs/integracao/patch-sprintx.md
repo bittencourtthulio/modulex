@@ -189,3 +189,35 @@ ENTREGA
   Os arquivos alterados com o diff de cada um; as seções novas de F1, F2,
   F3, F5 e F6; as chaves novas do frontmatter; e o resultado das oito
   verificações.
+
+---
+
+## A esteira, no fechamento do trabalho
+
+Acrescente ao fechamento da **F6** (ou ao passo de entrega da mergex, se ela
+for quem fecha) a detecção de candidato a módulo:
+
+```bash
+python3 .expx/modulex/scripts/detectar_candidato.py --quieto
+```
+
+O que isso faz, e o que **não** faz:
+
+- **Faz:** varre o que este trabalho tocou, pontua os sinais de integração de
+  terceiro (host externo, SDK no manifesto, variável de credencial, rota de
+  webhook, código de erro tratado) e, passando do limiar, grava um candidato
+  em `.expx/modulex/fila/<slug>.json`.
+- **Não faz:** extrair módulo, publicar nada, ou falar quando não achou nada.
+
+O valor está numa coisa que ninguém registra à mão: ele grava as **datas
+reais de commit**. Duas semanas depois, ninguém lembra quando a feature
+começou — e é esse número que a seção 8 pede e que o P4 do prodx usa para
+dimensionar escopo.
+
+**Ele grava a janela, não a faixa de esforço.** A janela é calendário; a
+faixa de esforço só nasce quando alguém confirma que a janela corresponde ao
+trabalho. Sem confirmação, `NAO DETERMINADO` — regra 6, sem exceção por o
+número ter vindo de máquina.
+
+Detalhe em `references/06-esteira.md`, e a configuração do hook em
+`assets/HOOK-DETECCAO.md`.

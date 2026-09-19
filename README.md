@@ -160,6 +160,52 @@ Prazos por tipo de campo — 6 meses para o contrato da API, 12 para o plano e a
 
 ---
 
+## A esteira: o catálogo cresce até a metade sozinho
+
+A M2 é o estágio que fecha o ciclo e é o que ninguém roda — não por preguiça, por custo. No fim de uma entrega, ninguém tem apetite para preencher catorze seções à mão.
+
+Um hook resolve a metade barata desse custo. Ele **não extrai módulo: enfileira candidato.**
+
+| O script observa sozinho | Só sai com julgamento |
+|---|---|
+| faixa de esforço — datas reais de commit | as lacunas: o que se descobriu na marra |
+| inventário — arquivos e contagem | o que **não** cobre |
+| pré-requisitos — variáveis de credencial | essencial × herdado |
+| catálogo de erros — códigos tratados no código | decisões de escopo, com alternativa descartada |
+
+A divisão é limpa porque o script é bom exatamente onde o humano é ruim. Datas de commit ninguém lembra duas semanas depois; o que quebrou e demorou para achar, nenhuma varredura encontra.
+
+**A janela do git prova calendário, não esforço.** Ela só vira faixa de esforço quando um humano confirma — número de máquina não é mais verdadeiro que número de humano, é só mais fácil de acreditar.
+
+---
+
+## O catálogo em nuvem é o GitHub, e nada além dele
+
+Sem servidor, sem banco, sem serviço próprio. Em três pontos o primitivo nativo é melhor que a alternativa construída:
+
+| Peça | Construída | No GitHub |
+|---|---|---|
+| índice da M0 | banco | `modulos.json` por raw, com CDN na frente |
+| busca | banco vetorial | lexical sobre os sinônimos; vetor **commitado** se um dia precisar |
+| gate | serviço próprio | Actions no PR + secret scanning nativo |
+| aprovação humana | fluxo inventado | **o PR já é a aprovação** |
+| lacunas globais | tabela | **issues com label `lacuna`**, e 👍 como voto |
+| vencimento | cron em servidor | Actions `schedule`, abrindo issue de M3 |
+
+O contrato deixa de ser norma escrita e passa a ser **teste que reprova merge**:
+
+```bash
+python3 scripts/validar_modulo.py --todos   # 14 secoes, schema, status, lacunas
+python3 scripts/gate_publicacao.py <arquivos>  # segredo, dado pessoal, dominio
+python3 scripts/reindexar.py --conferir     # o indice bate com os MODULO.md
+```
+
+**Extrair, não anonimizar.** Anonimizar falha aberto: o que o padrão não pegou vai junto, e em repositório público não volta. Extrair falha fechado: o que não está no schema nunca foi copiado. O gate é a última linha, não a primeira — e roda na máquina **antes** do push, porque push protection no remoto já é tarde.
+
+**O que se perde, declarado:** telemetria de leitura agregada. A escrita se mede pelos PRs; a leitura, não.
+
+---
+
 ## O contrato: o que é um módulo
 
 Um módulo é um repositório com um **`MODULO.md` na raiz**, frontmatter `expx-schema v1` e `kind: modulo`. Repositório sem `MODULO.md` não é módulo: é repositório com código dentro.
@@ -194,7 +240,7 @@ Um `MODULO.md` com a seção 13 vazia é um resumo de documentação, e resumo d
 
 ---
 
-## As 11 regras invioláveis
+## As 13 regras invioláveis
 
 1. A `modulex` **não escolhe fornecedor** nem decide se usa; ela informa.
 2. O plano é rascunho a adaptar; o artefato de produção é para copiar, não reescrever — e **ambos passam pela F5 e pelo TDD da F6**.
@@ -207,6 +253,8 @@ Um `MODULO.md` com a seção 13 vazia é um resumo de documentação, e resumo d
 9. Na `prodx` o módulo é **sinal**, nunca decisão técnica no briefing.
 10. Na `runx` a armadilha é **hipótese**, nunca causa comprovada.
 11. A ausência da `modulex` **nunca bloqueia** nenhuma outra skill.
+12. O que sobe para o catálogo é **extraído, nunca raspado** — e nada sobe sem aprovação humana no PR.
+13. **Candidato não é módulo**: é buscável e marcado, e não vira rascunho de sprint nem artefato copiado.
 
 ---
 
@@ -243,7 +291,8 @@ Contagem de módulos é vaidade: quarenta módulos que ninguém consulta custam 
 |---|---|
 | **Harness** | [Claude Code](https://claude.com/claude-code) e [OpenCode](https://opencode.ai) |
 | **Skills irmãs** | todas opcionais — a `modulex` funciona sozinha, e a ausência dela não quebra nenhuma |
-| **Requisitos** | nenhum. Sem rede, sem banco, sem chamada externa: a consulta lê um arquivo JSON local |
+| **Requisitos** | a consulta: nenhum — sem rede, sem banco, lê um arquivo JSON local |
+| **Opcionais** | Python 3.11+ para os scripts (só stdlib); `gh` para publicar e abrir issue de lacuna |
 | **Idioma** | documentação e saídas em pt-BR; frontmatter em `snake_case` sem acento |
 
 ---
@@ -308,6 +357,8 @@ Preciso que o sistema atenda cliente pelo WhatsApp.
 | `/modulex-injetar` | **M1** — carrega um módulo (ou fatias dele) na base do trabalho atual |
 | `/modulex-extrair` | **M2** — cria um módulo novo a partir de uma feature entregue |
 | `/modulex-verificar` | **M3** — revalida um módulo contra a realidade atual da API |
+| `/modulex-publicar` | publica um `MODULO.md` no catálogo via PR, com o gate rodando antes do push |
+| `/modulex-sincronizar` | puxa o catálogo do GitHub para a cópia local — o único ponto que toca a rede |
 
 ---
 
@@ -344,15 +395,30 @@ O consumo continua barato porque a consulta lê um arquivo, a injeção lê mais
     02-extracao.md        M2 — de quais artefatos sai cada secao, e o teste essencial x herdado
     03-verificacao.md     M3 — o que torna um modulo obsoleto, prazos, aviso retroativo
     04-contrato.md        o contrato campo a campo
-    integracao/           prodx, sprintx, runx, stackx, memox
+    05-catalogo.md        a cadeia de resolucao e a fusao por namespace
+    06-esteira.md         a esteira: deteccao, fila, candidato x modulo
+    07-publicacao.md      o catalogo no GitHub: PR como gate, CI, issue de lacuna
+    integracao/           prodx, sprintx, runx, stackx, memox, buildx
   assets/
     TEMPLATE-MODULO.md    as 14 secoes
     TEMPLATE-INDICE.md    o indice legivel do catalogo
     TEMPLATE-modulos.json.md   o formato do indice maquina
     TEMPLATE-LACUNAS.md   o que o catalogo nao cobre
-.claude/commands/         os cinco comandos, Claude Code
-.opencode/commands/       os mesmos cinco, conteudo identico, OpenCode
-docs/integracao/          os cinco patches para as skills irmas
+    HOOK-DETECCAO.md      como ligar a esteira nos dois harnesses
+.claude/commands/         os sete comandos, Claude Code
+.opencode/commands/       os mesmos sete, conteudo identico, OpenCode
+scripts/                  o contrato como teste — stdlib apenas, sem dependencia
+  validar_modulo.py       as 14 secoes, o schema, o status, as lacunas
+  gate_publicacao.py      segredo, dado pessoal, dominio de cliente, caminho absoluto
+  detectar_candidato.py   a esteira: enfileira candidato, nao extrai modulo
+  buscar.py               M0 lexical, le so o modulos.json, offline
+  reindexar.py            o indice derivado dos MODULO.md — confere ou escreve
+  publicar.py             gate, contrato, espelho, PR — nada sem --confirmar
+  sincronizar.py          o unico ponto que toca a rede
+  lacuna_issue.py         busca sem resultado vira issue com voto
+  vencidos.py             quem passou do prazo da D8
+.github/workflows/        valida no PR, reindexa no merge, cobra M3 por cron
+docs/integracao/          os patches para as skills irmas
 docs/modulos/             o catalogo, ja com o modulo zero registrado
 exemplos/                 o MODULO.md do whatsapp-uazapi
 ```

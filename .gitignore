@@ -3,3 +3,10 @@ prompt*.md
 
 # Sistema
 .DS_Store
+
+# fila local de candidatos do modulex — nunca publicada
+.expx/
+
+# bytecode do Python
+__pycache__/
+*.pyc

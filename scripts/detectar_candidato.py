@@ -76,10 +76,15 @@ MANIFESTOS = {
     "package.json", "requirements.txt", "pyproject.toml", "go.mod",
     "Gemfile", "composer.json", "Cargo.toml", "deno.json", "pubspec.yaml",
 }
-IGNORAR = re.compile(r"(?:^|/)(node_modules|\.git|dist|build|\.next|vendor|__pycache__|\.venv)/")
+# `.expx/` e a instalacao do proprio metodo: os scripts do modulex contem,
+# por construcao, os padroes que o detector procura. Varre-los seria o
+# detector se detectando.
+IGNORAR = re.compile(
+    r"(?:^|/)(node_modules|\.git|dist|build|\.next|vendor|__pycache__|\.venv|\.expx)/"
+)
 
 
-def arquivos_do_trabalho(raiz: Path, desde: str | None) -> list[str]:
+def arquivos_do_trabalho(raiz: Path, desde: str | None, ignorar: str | None = None) -> list[str]:
     """Os arquivos que este trabalho tocou, pelo git."""
     base = desde
     if not base:
@@ -92,6 +97,9 @@ def arquivos_do_trabalho(raiz: Path, desde: str | None) -> list[str]:
         return []
     saida = git("diff", "--name-only", "--diff-filter=ACMR", f"{base}...HEAD", cwd=raiz)
     nomes = [n for n in saida.splitlines() if n.strip() and not IGNORAR.search(n)]
+    if ignorar:
+        extra = re.compile(ignorar)
+        nomes = [n for n in nomes if not extra.search(n)]
     return nomes
 
 
@@ -209,10 +217,12 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--saida", default=".expx/modulex/fila", help="pasta da fila, relativa a raiz")
     ap.add_argument("--limiar", type=int, default=4, help="pontos minimos para enfileirar")
     ap.add_argument("--quieto", action="store_true", help="nao imprime nada se nao houver candidato")
+    ap.add_argument("--ignorar", default=None,
+                    help="regex de caminhos a pular, alem dos ignorados por padrao")
     args = ap.parse_args(argv)
 
     raiz = raiz_do_repo()
-    nomes = arquivos_do_trabalho(raiz, args.desde)
+    nomes = arquivos_do_trabalho(raiz, args.desde, args.ignorar)
     if not nomes:
         if not args.quieto:
             print("modulex: nenhum arquivo no intervalo — nada a enfileirar.")

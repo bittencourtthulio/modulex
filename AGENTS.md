@@ -47,14 +47,35 @@ entre todas as localizações.
 - **Os SVGs não levam `<script>`, `<foreignObject>`, animação, fonte externa
   nem `prefers-color-scheme`.** A troca de tema é feita no README, com dois
   arquivos e o elemento `<picture>`.
-- **Ao alterar o contrato do `MODULO.md`**, altere em três lugares e confirme
-  que continuam coerentes: `references/04-contrato.md` (a norma),
-  `assets/TEMPLATE-MODULO.md` (a forma) e
-  `exemplos/MODULO.whatsapp-uazapi.md` (o caso que valida). Um contrato que o
-  módulo zero não consegue preencher é um contrato mal desenhado — e isso vai
-  para `DECISOES-DA-SKILL.md`, não para o template.
+- **Ao alterar o contrato do `MODULO.md`**, altere em **quatro** lugares e
+  confirme que continuam coerentes: `references/04-contrato.md` (a norma),
+  `assets/TEMPLATE-MODULO.md` (a forma), `exemplos/MODULO.whatsapp-uazapi.md`
+  (o caso que valida) e `scripts/validar_modulo.py` (o teste). Um contrato que
+  o módulo zero não consegue preencher é um contrato mal desenhado — e isso vai
+  para `DECISOES-DA-SKILL.md`, não para o template. Um contrato que o validador
+  não cobra é um contrato que não acontece.
 
-## As 11 regras invioláveis
+  Confirme com:
+
+  ```bash
+  python3 scripts/validar_modulo.py --todos
+  python3 scripts/reindexar.py --conferir
+  ```
+
+- **Os scripts usam só a biblioteca padrão do Python.** Eles rodam em GitHub
+  Actions e na máquina de quem extrai; `pip install` na esteira é custo que
+  ninguém paga duas vezes. Saída de script sem acento, como as saídas do
+  catálogo; prosa em Markdown com acento.
+
+- **Ao mexer no gate ou no detector, teste contra isca e contra o próprio
+  repositório.** Gate que nunca acusa nada está quebrado, e detector que acusa
+  documentação enche a fila de candidato que ninguém promove. As duas falhas
+  já aconteceram durante a construção e estão registradas em
+  `references/06-esteira.md`. O teste de regressão do detector roda sobre um
+  intervalo só de documentação; sobre `scripts/` ele dispara de propósito,
+  porque o código do gate contém os padrões que procura.
+
+## As 13 regras invioláveis
 
 Estão no `SKILL.md`, uma por linha. As três que mais restringem o
 comportamento do agente:
@@ -66,7 +87,18 @@ comportamento do agente:
    modulex.
 3. **Faixa de esforço sem observação real é `NAO DETERMINADO`.** O agente
    nunca estima, nunca infere por analogia, nunca usa sensação — o P4 do prodx
-   encolhe escopo com base nesse número.
+   encolhe escopo com base nesse número. Vale também para número vindo de
+   máquina: a janela do git é calendário, não esforço, e só vira seção 8 com
+   confirmação humana.
+
+E as duas que governam a publicação:
+
+4. **O que sobe é extraído, nunca raspado, e nada sobe sem aprovação humana
+   no PR.** Anonimizar falha aberto; extrair falha fechado. O gate roda na
+   máquina **antes** do push — push protection no remoto já é tarde.
+5. **Candidato não é módulo.** Seção de julgamento em aberto significa
+   buscável e marcado, nunca rascunho de sprint na F3 nem artefato copiado na
+   F6.
 
 ## O que nunca fazer neste repositório
 
@@ -77,7 +109,20 @@ comportamento do agente:
   frequente da skill tem que ser barata; se ela encarecer, a skill morre.
 - **Gravar segredo, domínio de cliente ou telefone real num `MODULO.md`.**
   Módulo é conhecimento compartilhado entre projetos: o que entra aqui vaza
-  para todos os destinos.
+  para todos os destinos. Em catálogo público, vaza para sempre — repositório
+  público é forkado, indexado e cacheado, e não volta com force-push.
+
+- **Publicar a fila de candidatos.** `.expx/modulex/fila/` é local de
+  propósito: ela carrega nome de branch, caminho e host que identificam o
+  cliente. É evidência para quem vai extrair, não conteúdo de catálogo.
+
+- **Fazer o hook extrair módulo.** Ele enfileira candidato e mais nada. Script
+  sem humano preenche os catorze campos por inferência, e módulo plausível é
+  mais perigoso que módulo ausente, porque ninguém desconfia dele.
+
+- **Fazer o script falhar o trabalho de quem está entregando.** O detector sai
+  com código 0 mesmo quando quebra, e fala só quando tem o que dizer. Regra 11
+  vale para a esteira também.
 
 ## Para usar a skill
 

@@ -89,7 +89,12 @@ DOMINIOS_PUBLICOS = {
     "vercel.com", "cloudflare.com", "letsencrypt.org", "openai.com", "anthropic.com",
     "w3.org", "json-schema.org", "opensource.org", "creativecommons.org",
     "wikipedia.org", "stackoverflow.com", "schema.org", "claude.ai", "claude.com",
+    "opencode.ai", "github.io", "users.noreply.github.com", "noreply.github.com",
+    "gov.br", "readthedocs.io", "mit-license.org",
 }
+
+# Endereco de servico do proprio GitHub: identifica um bot, nao uma pessoa.
+EMAILS_DE_SERVICO = {"users.noreply.github.com", "noreply.github.com"}
 
 EXTENSOES_TEXTO = {
     ".md", ".txt", ".json", ".yml", ".yaml", ".toml", ".ini", ".env", ".example",
@@ -184,14 +189,18 @@ def checar(caminho: Path, rep: Relatorio) -> None:
                                             "obviamente ficticio ou marcador.")
 
         for dominio in EMAIL.findall(linha):
-            if dominio.lower() not in DOMINIOS_DE_EXEMPLO:
+            baixo_dom = dominio.lower()
+            if baixo_dom not in DOMINIOS_DE_EXEMPLO and baixo_dom not in EMAILS_DE_SERVICO:
                 rep.erro("dado-pessoal", local, f"email em `{dominio}`. Use um dominio "
                                                 "de exemplo ou remova.")
 
         for host in DOMINIO.findall(linha):
             host = host.lower()
-            base = ".".join(host.split(".")[-2:])
-            if host in DOMINIOS_PUBLICOS or base in DOMINIOS_PUBLICOS:
+            partes = host.split(".")
+            base = ".".join(partes[-2:])
+            sufixo = ".".join(partes[-3:]) if len(partes) >= 3 else base
+            if host in DOMINIOS_PUBLICOS or base in DOMINIOS_PUBLICOS \
+                    or sufixo in DOMINIOS_PUBLICOS:
                 continue
             if host in DOMINIOS_DE_EXEMPLO or base in DOMINIOS_DE_EXEMPLO:
                 continue

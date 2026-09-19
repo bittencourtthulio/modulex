@@ -28,9 +28,37 @@ Regras da cadeia:
 - **Sem rede.** Nenhum degrau busca nada no GitHub. A consulta é offline, como
   o README promete, e o catálogo desatualizado no disco é problema da M3, não
   da M0.
-- **O primeiro que existir vence, e os outros não são consultados.** Catálogo
-  não se funde: dois `modulos.json` com o mesmo `id` e conteúdos diferentes é
+- **O primeiro que existir vence, e os outros não são consultados** — com uma
+  exceção declarada, abaixo. O que a regra nunca permite é colisão
+  **silenciosa**: dois `modulos.json` com o mesmo `id` e conteúdos diferentes é
   exatamente a ambiguidade que a skill existe para não criar.
+
+## A exceção: fusão por namespace
+
+O modelo real é um catálogo público curado **mais** um privado por
+organização, e quem tem os dois quer os dois. A fusão é permitida quando — e
+só quando — a ambiguidade é impossível: a chave global é `<namespace>/<id>`,
+e a `precedencia` do `modulos.json` declara quem vence em colisão. O padrão é
+`["privado", "publico"]` (D18).
+
+Sem namespace declarado, a regra antiga vale inteira: o primeiro degrau vence
+e os outros não são consultados.
+
+## O degrau 2 é onde a rede aterrissa
+
+A cadeia continua **sem rede**, e isso não mudou com o catálogo em nuvem. A
+sincronização é operação à parte:
+
+```
+scripts/sincronizar.py   →   .expx/modulex/docs/modulos/   →   degrau 2
+```
+
+Ela baixa `modulos.json`, `INDICE.md` e `LACUNAS.md` do GitHub com ETag —
+rodar de novo sem mudança no remoto não baixa nada — e a M0 volta a ler
+arquivo em disco, offline, como sempre leu.
+
+Sincronização falhando **nunca bloqueia**: a cópia anterior continua valendo,
+e catálogo velho é problema da M3, não da M0 (regra 11).
 
 ## O quarto degrau nunca bloqueia
 
@@ -66,6 +94,8 @@ Toda saída da M0 diz de onde leu. Uma linha, no fim:
 ```
 Catalogo: .expx/modulex/docs/modulos/ (degrau 2) · 1 modulo · atualizado_em 2026-09-02
 ```
+
+`scripts/buscar.py` imprime essa linha sozinho, em toda consulta.
 
 Por quê: o defeito mais provável desta skill, depois de instalada, é alguém
 consultar um catálogo velho sem saber. O degrau mais a data de atualização

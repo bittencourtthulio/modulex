@@ -147,6 +147,7 @@
     },
     {
       "id": "nfse-municipal",
+      "namespace": "publico",
       "problema": "emitir nota fiscal de servico eletronica (NFS-e) em nome de um cliente, com cancelamento e PDF",
       "sinonimos": {
         "pt": [
