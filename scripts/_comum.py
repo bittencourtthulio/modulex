@@ -113,6 +113,42 @@ class Relatorio:
         return 1 if self.erros else 0
 
 
+def dividir_lista(miolo: str) -> list[str]:
+    """Divide uma lista inline respeitando aspas.
+
+    Necessario porque item de lista do expx-schema v1 contem virgula com
+    frequencia — "endpoint publico, sem autenticacao de sessao" e um item
+    so, nao dois. Dividir cru quebra o item ao meio e o indice passa a
+    divergir do MODULO.md por defeito do parser, nao do conteudo.
+    """
+    itens: list[str] = []
+    atual: list[str] = []
+    aspas: str | None = None
+    for ch in miolo:
+        if aspas:
+            if ch == aspas:
+                aspas = None
+            else:
+                atual.append(ch)
+            continue
+        if ch in "\"'":
+            aspas = ch
+            continue
+        if ch == ",":
+            itens.append("".join(atual).strip())
+            atual = []
+            continue
+        atual.append(ch)
+    itens.append("".join(atual).strip())
+    return [i for i in itens if i]
+
+
+def escrever_lista(itens: list[str]) -> str:
+    """Serializa a lista inline, citando o item que contem virgula."""
+    partes = [f'"{i}"' if ("," in i or ":" in i) else i for i in itens]
+    return "[" + ", ".join(partes) + "]"
+
+
 def ler_frontmatter(texto: str) -> tuple[dict[str, object], str]:
     """Le o subconjunto de YAML do expx-schema v1.
 
@@ -137,7 +173,7 @@ def ler_frontmatter(texto: str) -> tuple[dict[str, object], str]:
         valor = valor.strip()
         if valor.startswith("[") and valor.endswith("]"):
             miolo = valor[1:-1].strip()
-            dados[chave] = [i.strip() for i in miolo.split(",") if i.strip()] if miolo else []
+            dados[chave] = dividir_lista(miolo) if miolo else []
         else:
             dados[chave] = valor
     return dados, corpo

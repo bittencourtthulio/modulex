@@ -26,6 +26,10 @@ extraido_de: <sistema de origem>
 status: <ativo | candidato | obsoleto>
 ```
 
+**Item de lista que contém vírgula vai entre aspas.** `stack_essencial: ["endpoint publico, sem autenticacao de sessao", runtime http]` — sem as aspas, o item é partido ao meio e o índice passa a divergir do `MODULO.md` por defeito do parser, não do conteúdo. O validador lê respeitando aspas; `scripts/_comum.escrever_lista()` cita sozinho na hora de gravar.
+
+**O frontmatter tem que refletir o corpo.** As listas de stack do frontmatter são a forma condensada da seção 6 — e são elas que o índice deriva. Frontmatter mais pobre que a própria seção 6 é o defeito silencioso: quem consulta sem abrir o `MODULO.md` vê menos do que o módulo sabe. O validador avisa quando a diferença é grande.
+
 `namespace` é o que permite fundir o catálogo privado da organização com o público sem ambiguidade: a chave global é `<namespace>/<id>`, e em colisão o privado vence (D18). Módulo que nasce no catálogo compartilhado usa `publico`.
 
 `status: obsoleto` mantém o módulo no catálogo. Módulo obsoleto continua sendo achado pela M0, que responde "existiu, está obsoleto, motivo" — apagar faz a próxima pessoa refazer a descoberta.

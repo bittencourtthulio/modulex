@@ -198,8 +198,23 @@ def validar(caminho: Path, rep: Relatorio) -> None:
                 "suas bordas produz plano que descobre o buraco na metade da execucao.",
             )
 
-    # secao 6 em duas colunas declaradas.
+    # secao 6: o frontmatter tem que refletir o corpo. Um frontmatter mais
+    # pobre que a propria secao 6 e o defeito silencioso — o indice e
+    # derivado dele, e quem consulta sem abrir o MODULO.md ve menos do que
+    # o modulo sabe.
     if 6 in secoes:
+        linhas6 = [l for l in secoes[6].splitlines() if l.strip().startswith("|")]
+        itens6 = max(0, len([l for l in linhas6 if not set(l) <= set("|- ")]) - 2)
+        declarados = len(fm.get("stack_essencial") or []) + len(fm.get("stack_herdada") or [])
+        if itens6 and declarados < itens6 * 0.8:
+            rep.aviso(
+                "frontmatter-mais-pobre-que-a-secao-6",
+                f"{onde}:frontmatter",
+                f"a secao 6 lista ~{itens6} item(ns) e o frontmatter declara "
+                f"{declarados}. O indice deriva do frontmatter: quem consulta sem "
+                "abrir o MODULO.md veria menos do que o modulo sabe.",
+            )
+
         corpo6 = normalizar(secoes[6])
         if "essencial" not in corpo6 or "herdad" not in corpo6:
             rep.erro(

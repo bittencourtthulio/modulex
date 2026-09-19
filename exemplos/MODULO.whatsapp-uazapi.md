@@ -7,8 +7,8 @@ problema: atender cliente por WhatsApp, com caixa de entrada compartilhada pela 
 fornecedores: [uazapi, api4com, openrouter]
 fatias: [nucleo, organizacao, ia, ligacoes, grupos, notificacoes]
 repo: https://github.com/bittencourtthulio/whatsapp-uazapi-integration
-stack_essencial: [endpoint publico acessivel pela internet, runtime que responda http, banco para conversas e mensagens]
-stack_herdada: [react 18, typescript, supabase postgres com rls, edge functions deno, supabase realtime, shadcn ui, tailwind, tenancy por company_id, resposta success-data, ui em pt-br]
+stack_essencial: ["endpoint publico alcancavel pela internet, sem autenticacao de sessao", "o endpoint responde 2xx em todo caminho, inclusive no payload ignorado", "dois segredos de autenticacao distintos: um cria a conexao, outro opera", normalizacao de destinatario que preserva o identificador de grupo, "ordem de tratamento dos eventos: reacao, edicao, voto, mensagem", cache proprio da midia recebida, banco para conversas e mensagens]
+stack_herdada: [react 18 + typescript + vite, "supabase: postgres com rls, edge functions deno, realtime", coluna de tenancy chamada company_id, funcao de tenancy get_user_company_ids com privilegio elevado, contexto de cliente ativo activeCompany.company_id, formato de resposta success-data, shadcn/ui + tailwind com utilitario cn, hooks useAuth e use-toast, interface em pt-BR, publicacao de tabela no realtime do supabase, grant explicito por tabela ao papel autenticado, migracoes somente-adicao]
 esforco: NAO DETERMINADO
 verificado_em: 2026-08-24
 verificado_contra: documentacao publica da uazapi em 2026-08-24
