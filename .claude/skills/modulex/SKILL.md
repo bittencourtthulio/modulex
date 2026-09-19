@@ -60,6 +60,8 @@ A regra que sobra: **o plano se adapta, o artefato se copia — e as duas coisas
 
 Um artefato copiado sem teste continua sendo dívida. Copiar não é atalho para o TDD: é atalho para a redescoberta.
 
+**Quando a origem é privada, a segunda metade não existe — e isso é declarado, nunca deduzido.** O modulex extrai a estrutura de que precisa e a cataloga no próprio catálogo; o módulo passa a se bastar e não exige acesso nenhum à origem. Não há artefato para copiar: a F6 constrói a partir do plano e das armadilhas, sob TDD. O que o módulo poupa é a **descoberta**, que é a maior parte do custo. Um módulo assim vale menos que um com artefato e muito mais que nada — o que ele não pode é deixar isso implícito, porque plano que conta com cópia que nunca chega descobre o buraco na metade da execução (D20).
+
 O módulo zero diz isso com todas as letras: *"Copy the packaged artifacts. Never retype an edge function or a migration from memory — they carry fixes for real failure modes that are invisible in a rewrite."* Um `CREATE TABLE` reescrito à mão perde o `GRANT` que existe porque, sem ele, o frontend recebe array vazio sem erro. Essa correção não está visível no código: está na cicatriz.
 
 ## Essencial e herdado: a separação que impede a injeção de casa alheia

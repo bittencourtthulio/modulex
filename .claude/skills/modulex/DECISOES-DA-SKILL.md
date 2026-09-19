@@ -619,3 +619,52 @@ seria fechar a porta depois de o dado já ter saído da máquina.
 **O que revisa:** se a perda de fidelidade se mostrar cara — módulos que
 não dizem o suficiente para serem usados — o caminho não é afrouxar o gate,
 é enriquecer o schema. Campo novo no contrato é revisável; vazamento não.
+
+---
+
+## D20 — Origem privada: o catálogo é auto-suficiente
+
+**Ambiguidade:** o `MODULO.md` mora com o módulo, e o campo `repo` aponta
+para o repositório de origem (D16). E quando esse repositório é privado e
+vai continuar privado?
+
+**Os três lados:**
+
+*Não catalogar.* A favor: coerência — um módulo cujo artefato ninguém
+alcança é meio módulo. Contra, e é decisivo: joga fora o conhecimento mais
+caro que existe. A maior parte do custo de uma integração é a descoberta —
+o contrato do protocolo, a ordem das operações, o que o fornecedor rejeita
+e por quê — e essa metade **não depende** de código nenhum viajar.
+
+*Catalogar apontando `repo` para o repositório privado.* A favor: a
+procedência fica literal. Contra: publica um link que dá 404 para todo
+mundo, e a M1 promete artefato que nunca desce. Módulo que promete e não
+entrega é pior que módulo que declara sua borda.
+
+*Catalogar a estrutura, e o módulo passa a se bastar.* A favor: o
+conhecimento circula, o catálogo não depende de nada externo, e a origem
+continua fechada. Contra: o módulo vale menos que um com artefato, e é
+preciso dizer isso em alto e bom som.
+
+**Decisão: o modulex extrai a estrutura de que precisa e a cataloga no
+próprio catálogo. O módulo não exige acesso nenhum à origem.**
+
+**Por quê:** é a mesma assimetria da D19. O conhecimento que viaja é o que
+foi extraído para um schema; o artefato é um extra, não o mecanismo. Um
+módulo de conhecimento poupa a descoberta, que é a maior parte do custo, e
+custa zero em risco de vazamento — porque nada além do schema foi copiado.
+
+**Como se declara, e a declaração é obrigatória:** `repo` aponta para o
+catálogo; a seção 10 vira evidência de procedência, cada linha marcada
+`nao distribuido` e com a contagem preservada; a seção 14 diz que a origem
+é privada e que nenhum acesso a ela é necessário.
+
+**A regra 2 perde uma metade, e isso vai escrito.** Não há artefato para
+copiar. A F6 constrói a partir do plano e das armadilhas, sob TDD. Deixar
+isso implícito é planejar cópia de algo que nunca chega — o buraco
+descoberto na metade da execução que a seção 4 existe para evitar.
+
+**O que revisa:** se um dia a origem abrir, o módulo ganha artefato e as
+marcas mudam. O caminho inverso é mais provável e mais delicado: módulo com
+artefato cuja origem **fecha** precisa ter as marcas rebaixadas, e isso é
+trabalho da M3 — não de quem descobre o 404 no meio da F6.

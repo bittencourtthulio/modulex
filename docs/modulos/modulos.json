@@ -240,7 +240,7 @@
           "esforco": "NAO DETERMINADO"
         }
       ],
-      "repo": "https://github.com/bittencourtthulio/ExpxNFe",
+      "repo": "https://github.com/bittencourtthulio/modulex-catalogo/tree/main/docs/modulos/mod/publico/nfse-municipal",
       "stack_essencial": [
         "certificado digital A1 em pfx acessivel pelo processo que transmite",
         "runtime com mTLS e criptografia nativa no servidor",

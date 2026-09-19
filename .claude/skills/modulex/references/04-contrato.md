@@ -167,6 +167,22 @@ Nunca marque como produção o que você não sabe que rodou.
 
 **Obrigatório. Módulo sem artefato declara inventário vazio** — e vale como conhecimento, não como código.
 
+#### Módulo de conhecimento: quando a origem é privada
+
+Nem todo sistema de origem pode ser aberto. Quando ele não pode, o modulex extrai **a estrutura de que precisa** e a cataloga aqui — e o módulo passa a se bastar: consultar, planejar e implementar a partir dele **não exige acesso nenhum** à origem.
+
+Três coisas mudam nesse módulo, e as três são declaradas, nunca deduzidas:
+
+| Campo | O que passa a valer |
+|---|---|
+| `repo` | aponta para o **próprio catálogo**, onde o módulo mora. Apontar para um repositório privado publica um link que dá 404 para todo mundo |
+| seção 10 | vira **evidência de procedência**, não lista de cópia. Cada linha marcada `nao distribuido`, com a contagem preservada: ela diz de quanto código em produção o conhecimento foi destilado |
+| seção 14 | diz, com todas as letras, que a origem é privada e que **nenhum acesso a ela é necessário** |
+
+**A regra 2 perde uma metade aqui, e isso precisa estar escrito.** Não há artefato para copiar: a F6 constrói a partir do plano da seção 9 e das armadilhas da seção 11, sob TDD. O que o módulo poupa é a **descoberta** — o contrato do protocolo, a ordem das operações, o que o fornecedor rejeita e por quê. Essa é a maior parte do custo, e é o que não se lê em documentação oficial.
+
+Um módulo assim vale menos que um com artefato, e vale muito mais que nada. O que ele **não** pode é deixar isso implícito: plano que conta com cópia de artefato que nunca vai chegar descobre o buraco na metade da execução — exatamente o que a seção 4 existe para evitar.
+
 ### 11. Cadeia de falha e armadilhas conhecidas
 
 Os elos onde quebra e o **sintoma observável** de cada um.
