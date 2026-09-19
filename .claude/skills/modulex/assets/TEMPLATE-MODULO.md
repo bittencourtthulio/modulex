@@ -2,6 +2,7 @@
 kind: modulo
 schema: expx-schema-v1
 id: <slug-do-modulo>
+namespace: <publico | slug-da-org>
 problema: <uma linha, na linguagem de quem pede>
 fornecedores: [<nome>]
 fatias: [nucleo, <slug-da-fatia>]
@@ -12,7 +13,7 @@ esforco: <faixa | NAO DETERMINADO>
 verificado_em: <AAAA-MM-DD>
 verificado_contra: <versao da API | "documentacao publica em AAAA-MM-DD">
 extraido_de: <sistema de origem>
-status: <ativo | obsoleto>
+status: <ativo | candidato | obsoleto>
 ---
 
 # <nome do modulo>

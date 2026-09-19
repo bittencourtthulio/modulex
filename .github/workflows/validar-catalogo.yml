@@ -1,0 +1,55 @@
+# O contrato do modulex deixa de ser norma escrita e vira teste que reprova
+# merge. Este workflow vive no repositorio do catalogo; aqui ele roda contra
+# o catalogo semente em docs/modulos/ e contra o modulo zero em exemplos/.
+name: validar catalogo
+
+on:
+  pull_request:
+    paths: ["docs/modulos/**", "exemplos/**", "scripts/**", ".github/workflows/**"]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contrato:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 1. o gate primeiro. Publicacao e irreversivel: se ha segredo no PR,
+      #    nada mais importa ate ele ser girado.
+      - name: gate de publicacao
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+            MUDOU=$(git diff --name-only --diff-filter=ACMR \
+              "origin/${{ github.base_ref }}...HEAD" || true)
+          else
+            MUDOU=$(git ls-files 'docs/modulos/*' 'exemplos/*')
+          fi
+          if [ -z "$MUDOU" ]; then echo "nada mudou"; exit 0; fi
+          echo "$MUDOU" | tr '\n' ' '
+          # shellcheck disable=SC2086
+          python3 scripts/gate_publicacao.py $MUDOU
+
+      - name: contrato dos MODULO.md
+        run: python3 scripts/validar_modulo.py --todos
+
+      - name: indice bate com os MODULO.md
+        run: python3 scripts/reindexar.py --conferir
+
+      - name: a busca responde
+        run: |
+          python3 scripts/buscar.py "atender cliente por whatsapp" | tee /tmp/m0.txt
+          grep -q "EXISTE:" /tmp/m0.txt
+          python3 scripts/buscar.py "emitir nota fiscal" | grep -q "NAO EXISTE"

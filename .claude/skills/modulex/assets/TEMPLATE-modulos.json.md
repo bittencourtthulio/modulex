@@ -15,10 +15,13 @@ Corrija na M2 ou na M3.
 {
   "schema": "expx-schema-v1",
   "kind": "modulo_indice_maquina",
+  "namespace": "<publico | slug-da-org>",
+  "precedencia": ["privado", "publico"],
   "atualizado_em": "AAAA-MM-DD",
   "modulos": [
     {
       "id": "<slug-do-modulo>",
+      "namespace": "<publico | slug-da-org>",
       "problema": "<uma linha, na linguagem de quem pede>",
       "sinonimos": {
         "pt": ["<termo>"],
@@ -61,7 +64,9 @@ Corrija na M2 ou na M3.
 | `stack_essencial` / `stack_herdada` | o cruzamento com o stackx, ja na consulta |
 | `pre_requisitos_bloqueantes` | responder "da para comecar hoje?" sem abrir o modulo |
 | `verificado_em` | o aviso de vencimento (regra 8) |
-| `status` | modulo obsoleto continua sendo achado, com o motivo |
+| `status` | `ativo`, `candidato` ou `obsoleto` — candidato e buscavel e marcado, nao injetavel (regra 13) |
+| `namespace` | a chave global e `<namespace>/<id>`: e o que permite fundir o catalogo privado com o publico sem ambiguidade (D18) |
+| `precedencia` | ordem de quem vence em colisao de `<namespace>/<id>`. O privado vence o publico |
 
 ## Regras
 
@@ -70,6 +75,8 @@ Corrija na M2 ou na M3.
 - `nao_cobre` de cada fatia **nunca e vazio** (regra 7).
 - O arquivo e derivado dos `MODULO.md`. Divergencia entre os dois: o `MODULO.md` manda, e o indice e corrigido.
 - Nenhum caminho absoluto.
+- O arquivo e **derivado** dos `MODULO.md` espelhados em `mod/<namespace>/<id>/`.
+  Quem reconstroi e `scripts/reindexar.py`; o PR confere com `--conferir`.
 
 ## Sobre o custo
 

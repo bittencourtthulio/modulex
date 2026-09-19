@@ -4,6 +4,7 @@ schema: expx-schema-v1
 criado_em: 2026-09-02
 atualizado_em: 2026-09-19
 total_buscas_sem_resultado: 2
+buscas_fechadas: 2
 ---
 
 # Lacunas do catálogo
@@ -19,8 +20,8 @@ existe.
 
 | data | termo procurado | quem/onde | vezes | encaminhamento |
 |------|-----------------|-----------|-------|----------------|
-| 2026-09-19 | `emitir nota fiscal` | verificação da instalação, a partir do ExpxNFe | 1 | `aguardando` |
-| 2026-09-19 | `nfs-e` | verificação da instalação, a partir do ExpxNFe | 1 | `aguardando` |
+| 2026-09-19 | `emitir nota fiscal` | verificação da instalação, a partir do ExpxNFe | 1 | **fechada** — `nfse-municipal`, extraído em 2026-09-19 |
+| 2026-09-19 | `nfs-e` | verificação da instalação, a partir do ExpxNFe | 1 | **fechada** — `nfse-municipal`, extraído em 2026-09-19 |
 
 As duas buscas acima foram feitas na verificação da cadeia de resolução, de
 dentro de um projeto que não é o do catálogo. **Não são features**: não contam
@@ -28,8 +29,11 @@ no indicador do ciclo, que mede feature com integração de terceiro que consult
 módulo antes de planejar. Contam aqui, porque foram buscas reais que terminaram
 em `NAO EXISTE`, e é isso que esta tabela registra.
 
-O encaminhamento é `aguardando` nas duas: não há, ainda, feature entregue de
-emissão de nota fiscal que caiba numa extração. Havendo, elas viram `extrair`.
+As duas foram **fechadas no mesmo dia**, pela extração do `nfse-municipal` a
+partir do próprio ExpxNFe — que era exatamente o "já existe feature entregue que
+vira módulo" do encaminhamento `extrair`. A linha **não sai da tabela**: ela
+registra que a busca falhou uma vez, e é isso que torna visível quanto tempo uma
+lacuna fica aberta. Havendo, elas viram `extrair`.
 
 `encaminhamento` assume um de três valores:
 
@@ -59,7 +63,8 @@ O que se sabe que falta, independentemente de alguém ter buscado.
 
 | Lacuna | Impacto | O que fecharia |
 |--------|---------|----------------|
-| **domínios inteiros sem nenhum módulo**: pagamento, storage, email transacional, nota fiscal, assinatura digital | são os problemas que a especificação da skill nomeia como recorrentes, e o catálogo não cobre nenhum. Nota fiscal já foi procurada de verdade, duas vezes, e não estava lá | uma extração (M2) por domínio, a partir de feature já entregue |
-| **nenhum módulo tem faixa de esforço observada** | o P4 do prodx dimensiona só pelas fatias, sem ordem de grandeza | a primeira implantação cronometrada sob o método Expx fecha, se alguém registrar as datas |
-| **o único módulo do catálogo é de uma stack só** (React + Supabase) | não há evidência de como o contrato se comporta com módulo de outra stack — a separação essencial × herdada nunca foi testada num segundo caso | a segunda extração, preferencialmente de stack diferente |
-| **nenhum módulo publicou `erros.json`** | a E1 do runx não pode cruzar código de erro com o log sem ler prosa | produzir o do `whatsapp-uazapi` na próxima verificação |
+| **domínios ainda sem nenhum módulo**: pagamento, storage, email transacional, assinatura digital | são os problemas que a especificação da skill nomeia como recorrentes. Nota fiscal **saiu desta lista** em 2026-09-19 | uma extração (M2) por domínio, a partir de feature já entregue |
+| **nota fiscal de produto (NF-e / NFC-e) não tem módulo** | o `nfse-municipal` cobre **serviço**, que é municipal. Produto é SEFAZ estadual: outro terceiro, outro XML, outro catálogo de erros — e o próprio ExpxNFe já o implementa | uma segunda extração do ExpxNFe, com `problema` distinto e sinônimos cruzados com o `nfse-municipal` |
+| **nenhum dos dois módulos tem faixa de esforço observada** | o P4 do prodx dimensiona só pelas fatias, sem ordem de grandeza. Nos dois casos a origem é anterior ao método, e não há datas de abertura e fechamento para ler | a primeira implantação cronometrada sob o método Expx fecha, se alguém registrar as datas |
+| ~~o único módulo do catálogo é de uma stack só~~ **FECHADA em 2026-09-19** | o `nfse-municipal` veio de Next.js + Prisma + Turborepo, stack diferente do módulo zero. A separação essencial × herdada foi testada num segundo caso e **se sustentou**: o certificado e o mTLS são essenciais em qualquer projeto, e o envelope de resposta e a coluna de tenancy são herança nos dois | — |
+| **nenhum módulo publicou `erros.json`** | a E1 do runx não pode cruzar código de erro com o log sem ler prosa. O `nfse-municipal` tem 8 códigos tabelados em prosa, prontos para virar formato máquina | produzir o dos dois módulos na próxima verificação; o `nfse-municipal` é o mais barato, porque a tabela já existe |

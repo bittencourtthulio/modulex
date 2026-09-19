@@ -2,6 +2,7 @@
 kind: modulo
 schema: expx-schema-v1
 id: whatsapp-uazapi
+namespace: publico
 problema: atender cliente por WhatsApp, com caixa de entrada compartilhada pela equipe
 fornecedores: [uazapi, api4com, openrouter]
 fatias: [nucleo, organizacao, ia, ligacoes, grupos, notificacoes]
