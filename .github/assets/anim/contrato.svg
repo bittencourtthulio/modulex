@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="O contrato do módulo: catorze seções obrigatórias, a regra do NAO DETERMINADO e o validador que reprova o merge.">
+<title>O contrato da modulex: as catorze seções, a seção 13 como ativo, e o contrato que virou teste</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes rowin{0%{opacity:.22}2%{opacity:1}94%{opacity:1}97%,100%{opacity:.22}}
+@keyframes tick{0%{opacity:0;transform:scale(.6)}2.4%{opacity:1;transform:none}94%{opacity:1;transform:none}97%,100%{opacity:0;transform:none}}
+@keyframes term{0%{opacity:0;transform:translateY(5px)}1.6%{opacity:1;transform:none}96%{opacity:1;transform:none}98%,100%{opacity:0;transform:none}}
+@keyframes ativo{0%,44%{opacity:0}48%{opacity:1}94%{opacity:1}97%,100%{opacity:0}}
+@keyframes glow13{0%,44%{opacity:0}50%{opacity:.16}62%{opacity:.06}74%{opacity:.16}94%{opacity:.1}97%,100%{opacity:0}}
+@keyframes selo{0%,88%{opacity:0;transform:scale(.9)}91%{opacity:1;transform:none}96%{opacity:1;transform:none}98%,100%{opacity:0;transform:none}}
+.rw{opacity:.22;animation-name:rowin;animation-duration:18s;animation-timing-function:ease-out;animation-iteration-count:infinite}
+.tk{opacity:0;transform-box:fill-box;transform-origin:center;animation-name:tick;animation-duration:18s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+.tm{opacity:0;animation-name:term;animation-duration:18s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+</style>
+
+<rect x="0.5" y="0.5" width="999" height="439" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">Um módulo é um <tspan class="m" fill="#58a6ff">MODULO.md</tspan> na raiz — e catorze seções que o validador cobra</text>
+
+<!-- documento -->
+<rect x="36" y="58" width="520" height="346" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m" x="56" y="82" font-size="12.5" font-weight="700" fill="#58a6ff">MODULO.md</text>
+<text class="m dim" x="536" y="82" text-anchor="end" font-size="11">kind: modulo · expx-schema v1</text>
+<line x1="56" y1="92" x2="536" y2="92" stroke="#30363d"/>
+<g class="m" font-size="11.5">
+  <g class="rw" style="animation-delay:0s"><text x="56" y="114"><tspan class="dim">1 &#160;</tspan><tspan class="mut">problema que resolve</tspan></text><g class="tk" style="animation-delay:0s"><path d="M512 109 l4 4 L524 104" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:0.5s"><text x="56" y="136"><tspan class="dim">2 &#160;</tspan><tspan class="mut">sinônimos e termos de busca</tspan></text><g class="tk" style="animation-delay:0.5s"><path d="M512 131 l4 4 L524 126" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:1s"><text x="56" y="158"><tspan class="dim">3 &#160;</tspan><tspan class="mut">fatias: núcleo + opcionais</tspan></text><g class="tk" style="animation-delay:1s"><path d="M512 153 l4 4 L524 148" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:1.5s"><text x="56" y="180"><tspan class="dim">4 &#160;</tspan><tspan class="mut">o que cobre e </tspan><tspan class="br">o que NÃO cobre</tspan></text><g class="tk" style="animation-delay:1.5s"><path d="M512 175 l4 4 L524 170" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:2s"><text x="56" y="202"><tspan class="dim">5 &#160;</tspan><tspan class="mut">decisões de escopo já fechadas</tspan></text><g class="tk" style="animation-delay:2s"><path d="M512 197 l4 4 L524 192" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:2.5s"><text x="56" y="224"><tspan class="dim">6 &#160;</tspan><tspan class="mut">dependência de stack — </tspan><tspan class="br">duas colunas</tspan></text><g class="tk" style="animation-delay:2.5s"><path d="M512 219 l4 4 L524 214" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:3s"><text x="56" y="246"><tspan class="dim">7 &#160;</tspan><tspan class="mut">pré-requisitos, bloqueantes ou não</tspan></text><g class="tk" style="animation-delay:3s"><path d="M512 241 l4 4 L524 236" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:3.5s"><text x="56" y="268"><tspan class="dim">8 &#160;</tspan><tspan class="mut">faixa de esforço observada</tspan></text><text x="536" y="268" text-anchor="end" font-size="10.5" fill="#d29922" class="tk" style="animation-delay:3.5s">NAO DETERMINADO</text></g>
+  <g class="rw" style="animation-delay:4s"><text x="56" y="290"><tspan class="dim">9 &#160;</tspan><tspan class="mut">plano de fases com gates</tspan></text><g class="tk" style="animation-delay:4s"><path d="M512 285 l4 4 L524 280" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:4.5s"><text x="56" y="312"><tspan class="dim">10 </tspan><tspan class="mut">inventário de artefatos</tspan></text><g class="tk" style="animation-delay:4.5s"><path d="M512 307 l4 4 L524 302" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:5s"><text x="56" y="334"><tspan class="dim">11 </tspan><tspan class="mut">cadeia de falha e armadilhas</tspan></text><g class="tk" style="animation-delay:5s"><path d="M512 329 l4 4 L524 324" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g class="rw" style="animation-delay:5.5s"><text x="56" y="356"><tspan class="dim">12 </tspan><tspan class="mut">catálogo de erros: código, causa, retry</tspan></text><g class="tk" style="animation-delay:5.5s"><path d="M512 351 l4 4 L524 346" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+  <g>
+    <rect x="48" y="364" width="496" height="22" rx="6" fill="#3fb950" opacity="0" style="animation:glow13 18s ease-in-out infinite"/>
+    <g class="rw" style="animation-delay:6s"><text x="56" y="379"><tspan class="dim">13 </tspan><tspan fill="#3fb950" font-weight="700">lacunas — o que ninguém documentou</tspan></text>
+      <text x="536" y="379" text-anchor="end" font-size="10.5" fill="#3fb950" opacity="0" style="animation:ativo 18s ease-out infinite">O ATIVO</text></g>
+  </g>
+  <g class="rw" style="animation-delay:6.5s"><text x="56" y="399"><tspan class="dim">14 </tspan><tspan class="mut">procedência e verificado_em</tspan></text><g class="tk" style="animation-delay:6.5s"><path d="M512 394 l4 4 L524 389" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+</g>
+
+<!-- regra dura -->
+<rect x="580" y="58" width="384" height="118" rx="10" fill="#1d1a12" stroke="#d29922"/>
+<text class="m" x="600" y="82" font-size="12.5" font-weight="700" fill="#d29922">regra dura</text>
+<text class="s mut" x="600" y="104" font-size="12">campo não verificável vira <tspan class="m" fill="#d29922">NAO DETERMINADO</tspan></text>
+<text class="s mut" x="600" y="124" font-size="12">e entra, obrigatoriamente, na seção 13.</text>
+<text class="s" x="600" y="150" font-size="12" fill="#e6edf3">Faixa inventada é <tspan fill="#f85149">pior</tspan> que módulo inexistente:</text>
+<text class="s dim" x="600" y="166" font-size="11.5">o P4 da prodx encolhe escopo com base em ficção.</text>
+
+<!-- validador -->
+<rect x="580" y="182" width="384" height="222" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m dim" x="600" y="206" font-size="11">o contrato como teste — roda na máquina e no PR</text>
+<g class="m" font-size="11.5">
+  <text x="600" y="230" class="tm" style="animation-delay:9s"><tspan fill="#58a6ff">$</tspan> <tspan class="br">python3 scripts/validar_modulo.py --todos</tspan></text>
+  <text x="600" y="256" class="tm mut" style="animation-delay:10s"><tspan fill="#3fb950">&#10003;</tspan> as 14 seções presentes</text>
+  <text x="600" y="278" class="tm mut" style="animation-delay:10.8s"><tspan fill="#3fb950">&#10003;</tspan> "o que NÃO cobre" não-vazio</text>
+  <text x="600" y="300" class="tm mut" style="animation-delay:11.6s"><tspan fill="#3fb950">&#10003;</tspan> seção 6 nas duas colunas</text>
+  <text x="600" y="322" class="tm mut" style="animation-delay:12.4s"><tspan fill="#3fb950">&#10003;</tspan> todo NAO DETERMINADO tem contrapartida na 13</text>
+  <text x="600" y="344" class="tm mut" style="animation-delay:13.2s"><tspan fill="#3fb950">&#10003;</tspan> status coerente com verificado_em</text>
+</g>
+<g opacity="0" style="animation:selo 18s cubic-bezier(.2,.7,.2,1) infinite;transform-box:fill-box;transform-origin:center">
+  <rect x="600" y="362" width="344" height="26" rx="13" fill="#238636" fill-opacity=".18" stroke="#3fb950"/>
+  <text class="m" x="772" y="379" text-anchor="middle" font-size="11.5" fill="#3fb950">2 módulos · 0 falhas — o merge passa</text>
+</g>
+</svg>

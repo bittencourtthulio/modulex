@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="332" viewBox="0 0 1000 332" role="img" aria-label="A cadeia de quatro degraus: o projeto encontra o catálogo parando no primeiro degrau que existir, sem rede e sem caminho absoluto, e o quarto degrau não bloqueia.">
+<title>Como um projeto qualquer encontra o catálogo: a cadeia de quatro degraus</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes probe{0%,4%{opacity:0;transform:translateY(0)}8%{opacity:1;transform:translateY(0)}20%{opacity:1;transform:translateY(54px)}26%{opacity:0;transform:translateY(54px)}100%{opacity:0;transform:translateY(54px)}}
+@keyframes miss{0%,8%{opacity:0}12%{opacity:1}92%{opacity:1}96%,100%{opacity:0}}
+@keyframes hit{0%,24%{opacity:0}30%{opacity:1}92%{opacity:1}96%,100%{opacity:0}}
+@keyframes hitbox{0%,24%{opacity:0}30%{opacity:1}92%{opacity:1}96%,100%{opacity:0}}
+@keyframes out{0%,40%{opacity:0;transform:translateX(-8px)}46%{opacity:1;transform:none}92%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+</style>
+
+<rect x="0.5" y="0.5" width="999" height="331" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">Estando dentro de um projeto qualquer, pare no primeiro degrau que existir</text>
+<text class="s dim" x="964" y="38" text-anchor="end" font-size="13">sem rede, sem caminho absoluto</text>
+
+<g class="m">
+  <rect x="36" y="58" width="560" height="44" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="56" y="85" font-size="12" class="dim">1</text>
+  <text x="84" y="85" font-size="12" class="mut">$MODULEX_CATALOGO/modulos.json</text>
+  <text x="576" y="85" text-anchor="end" font-size="11" class="dim" style="animation:miss 16s ease-in-out infinite">não definido</text>
+
+  <rect x="36" y="112" width="560" height="44" rx="8" fill="#161b22" stroke="#30363d"/>
+  <rect x="36" y="112" width="560" height="44" rx="8" fill="#121d2f" stroke="#1f6feb" opacity="0" style="animation:hitbox 16s ease-in-out infinite"/>
+  <text x="56" y="139" font-size="12" class="dim">2</text>
+  <text x="84" y="139" font-size="12" class="mut">.expx/modulex/docs/modulos/modulos.json</text>
+  <text x="576" y="139" text-anchor="end" font-size="11" fill="#3fb950" opacity="0" style="animation:hit 16s ease-in-out infinite">encontrado — para aqui</text>
+
+  <rect x="36" y="166" width="560" height="44" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="56" y="193" font-size="12" class="dim">3</text>
+  <text x="84" y="193" font-size="12" class="dim">docs/modulos/modulos.json</text>
+  <text x="576" y="193" text-anchor="end" font-size="11" class="dim">dentro do próprio catálogo</text>
+
+  <rect x="36" y="220" width="560" height="44" rx="8" fill="#161b22" stroke="#30363d" stroke-dasharray="5 4"/>
+  <text x="56" y="247" font-size="12" class="dim">4</text>
+  <text x="84" y="247" font-size="12" class="dim">nenhum</text>
+  <text x="576" y="247" text-anchor="end" font-size="11" fill="#d29922">não bloqueia — segue sem módulo</text>
+</g>
+<g opacity="0" style="animation:probe 16s cubic-bezier(.3,0,.2,1) infinite">
+  <circle cx="24" cy="80" r="5" fill="#1f6feb"/>
+</g>
+
+<rect x="620" y="58" width="344" height="152" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="640" y="84" font-size="12.5" font-weight="700">a saída da M0</text>
+<g opacity="0" style="animation:out 16s cubic-bezier(.2,.7,.2,1) infinite">
+  <text class="m mut" x="640" y="112" font-size="11.5"><tspan class="dim">catálogo: </tspan><tspan fill="#58a6ff">degrau 2</tspan><tspan class="dim"> · atualizado_em </tspan><tspan class="br">2026-09-19</tspan></text>
+  <text class="m mut" x="640" y="136" font-size="11.5">whatsapp-uazapi · 6 fatias · ativo</text>
+  <text class="m dim" x="640" y="158" font-size="11.5">nfse-municipal · 5 fatias · ativo</text>
+  <text class="s dim" x="640" y="186" font-size="11">custa uma linha, e torna visível o defeito mais provável:</text>
+  <text class="s" x="640" y="202" font-size="11" fill="#d29922">consultar catálogo velho sem saber</text>
+</g>
+
+<text class="s" x="36" y="294" font-size="12.5" fill="#8b949e">O primeiro degrau vence inteiro: catálogo <tspan class="br">não se funde</tspan>, porque dois <tspan class="m">modulos.json</tspan> com o mesmo <tspan class="m">id</tspan></text>
+<text class="s" x="36" y="314" font-size="12.5" fill="#8b949e">e conteúdos diferentes é exatamente a ambiguidade que a skill existe para não criar.</text>
+<text class="s dim" x="620" y="240" font-size="11.5">"não alcançável" não é "NAO EXISTE":</text>
+<text class="s dim" x="620" y="258" font-size="11.5">a primeira não registra lacuna, a segunda registra.</text>
+</svg>

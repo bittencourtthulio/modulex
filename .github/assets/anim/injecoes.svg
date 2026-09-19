@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="As três injeções: o mesmo módulo chega à prodx como sinal, à sprintx com cinco autoridades diferentes e à runx como hipótese a comprovar.">
+<title>As três injeções da modulex: a mesma informação chega com autoridade diferente a cada skill</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes pill{0%{opacity:0;transform:translateX(-6px)}3%{opacity:1;transform:none}92%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+@keyframes row{0%{opacity:.28}3%{opacity:1}92%{opacity:1}96%,100%{opacity:.28}}
+@keyframes srcpulse{0%,100%{stroke:#30363d}6%,88%{stroke:#1f6feb}}
+@keyframes note{0%,44%{opacity:0}48%,94%{opacity:1}97%,100%{opacity:0}}
+.p{opacity:0;animation-name:pill;animation-duration:14s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+.r{animation-name:row;animation-duration:14s;animation-timing-function:ease-out;animation-iteration-count:infinite}
+</style>
+<defs>
+  <marker id="i-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#30363d"/></marker>
+  <path id="i-p1" d="M340 190 C376 168 368 118 414 112"/>
+  <path id="i-p2" d="M340 226 C376 230 372 236 414 238"/>
+  <path id="i-p3" d="M340 262 C376 292 368 348 414 358"/>
+</defs>
+
+<rect x="0.5" y="0.5" width="999" height="469" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">A mesma informação, autoridade diferente em cada ponto</text>
+<text class="s dim" x="964" y="38" text-anchor="end" font-size="13">a modulex informa; quem decide é sempre outra skill</text>
+
+<!-- origem -->
+<rect x="36" y="70" width="300" height="312" rx="10" fill="#161b22" stroke="#30363d" style="animation:srcpulse 14s ease-in-out infinite"/>
+<text class="m" x="56" y="98" font-size="13" font-weight="700" fill="#58a6ff">MODULO.md</text>
+<text class="m dim" x="316" y="98" text-anchor="end" font-size="11">14 seções</text>
+<line x1="56" y1="110" x2="316" y2="110" stroke="#30363d"/>
+<g class="m mut" font-size="11.5">
+  <text x="56" y="132">1 &#160;problema, na linguagem de quem pede</text>
+  <text x="56" y="154">3 &#160;fatias: núcleo + opcionais</text>
+  <text x="56" y="176">5 &#160;decisões de escopo já fechadas</text>
+  <text x="56" y="198">6 &#160;stack: essencial × herdada</text>
+  <text x="56" y="220">8 &#160;faixa de esforço observada</text>
+  <text x="56" y="242">9 &#160;plano de fases com gates</text>
+  <text x="56" y="264">10 inventário de artefatos</text>
+  <text x="56" y="286">11 cadeia de falha e armadilhas</text>
+  <text x="56" y="308">12 catálogo de erros</text>
+  <text x="56" y="330" fill="#3fb950">13 lacunas — o que ninguém documentou</text>
+  <text x="56" y="352">14 procedência e verificado_em</text>
+</g>
+<text class="s dim" x="56" y="372" font-size="11">um arquivo · nada de artefato antes da F6</text>
+
+<!-- trilhas -->
+<g fill="none" stroke="#30363d" stroke-width="1.5" marker-end="url(#i-arrow)">
+  <use href="#i-p1"/><use href="#i-p2"/><use href="#i-p3"/>
+</g>
+<g fill="#1f6feb">
+  <circle r="4"><animateMotion dur="14s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.06;0.16;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"><mpath href="#i-p1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.16;0.17;1" dur="14s" repeatCount="indefinite"/></circle>
+  <circle r="4"><animateMotion dur="14s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.22;0.32;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"><mpath href="#i-p2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.22;0.32;0.33;1" dur="14s" repeatCount="indefinite"/></circle>
+  <circle r="4"><animateMotion dur="14s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.62;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"><mpath href="#i-p3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.62;0.72;0.73;1" dur="14s" repeatCount="indefinite"/></circle>
+</g>
+
+<!-- prodx -->
+<rect x="420" y="70" width="544" height="84" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="440" y="94" font-size="13" font-weight="700">prodx</text>
+<text class="s dim" x="440" y="112" font-size="11.5">P3 existência · P4 escopo mínimo · P5 briefing</text>
+<text class="s mut" x="440" y="136" font-size="12">módulo pronto não prova que o sistema já faz — prova que sai mais barato</text>
+<g class="p" style="animation-delay:2.4s">
+  <rect x="806" y="84" width="140" height="24" rx="12" fill="#d29922" fill-opacity=".14" stroke="#d29922"/>
+  <text class="m" x="876" y="100" text-anchor="middle" font-size="11.5" fill="#d29922">SINAL APENAS</text>
+</g>
+
+<!-- sprintx -->
+<rect x="420" y="166" width="544" height="164" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="440" y="190" font-size="13" font-weight="700">sprintx</text>
+<text class="s dim" x="944" y="190" text-anchor="end" font-size="11.5">o consumidor principal — cinco autoridades</text>
+<g class="m" font-size="12">
+  <g class="r" style="animation-delay:3.4s"><text x="440" y="214" class="mut">F1 &#160;o MODULO.md inteiro entra na base</text>
+    <rect x="762" y="202" width="184" height="20" rx="10" fill="#1f6feb" fill-opacity=".14" stroke="#1f6feb"/><text x="854" y="216.5" text-anchor="middle" font-size="11" fill="#58a6ff">INSUMO DE 1ª CLASSE</text></g>
+  <g class="r" style="animation-delay:3.9s"><text x="440" y="240" class="mut">F2 &#160;as decisões já fechadas viram perguntas</text>
+    <rect x="762" y="228" width="184" height="20" rx="10" fill="#a371f7" fill-opacity=".14" stroke="#a371f7"/><text x="854" y="242.5" text-anchor="middle" font-size="11" fill="#a371f7">PAUTA DE ENTREVISTA</text></g>
+  <g class="r" style="animation-delay:4.4s"><text x="440" y="266" class="mut">F3 &#160;as fases e gates do plano pronto</text>
+    <rect x="762" y="254" width="184" height="20" rx="10" fill="#d29922" fill-opacity=".14" stroke="#d29922"/><text x="854" y="268.5" text-anchor="middle" font-size="11" fill="#d29922">RASCUNHO A ADAPTAR</text></g>
+  <g class="r" style="animation-delay:4.9s"><text x="440" y="292" class="mut">F5 &#160;convenções invioláveis e armadilhas</text>
+    <rect x="762" y="280" width="184" height="20" rx="10" fill="#1f6feb" fill-opacity=".14" stroke="#1f6feb"/><text x="854" y="294.5" text-anchor="middle" font-size="11" fill="#58a6ff">CRITÉRIO DE PRONTIDÃO</text></g>
+  <g class="r" style="animation-delay:5.4s"><text x="440" y="318" class="mut">F6 &#160;os artefatos que rodaram em produção</text>
+    <rect x="762" y="306" width="184" height="20" rx="10" fill="#238636" fill-opacity=".2" stroke="#3fb950"/><text x="854" y="320.5" text-anchor="middle" font-size="11" fill="#3fb950">COPIAR — SOB TDD</text></g>
+</g>
+
+<!-- runx -->
+<rect x="420" y="342" width="544" height="66" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="440" y="366" font-size="13" font-weight="700">runx</text>
+<text class="s mut" x="440" y="390" font-size="12">E1 — a cadeia de falha é a melhor lista de suspeitos. E continua suspeita.</text>
+<g class="p" style="animation-delay:9.2s">
+  <rect x="806" y="356" width="140" height="24" rx="12" fill="#f85149" fill-opacity=".12" stroke="#f85149"/>
+  <text class="m" x="876" y="372" text-anchor="middle" font-size="11.5" fill="#f85149">HIPÓTESE</text>
+</g>
+
+<text class="s" x="36" y="440" font-size="12.5" fill="#8b949e" opacity="0" style="animation:note 14s ease-in-out infinite">Sem a marcação, a F3 trata o plano do módulo como plano aprovado — e a casa de origem entra por omissão.</text>
+</svg>

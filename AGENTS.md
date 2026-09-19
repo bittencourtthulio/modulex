@@ -16,9 +16,11 @@ isso antes?**
 
 ```
 .claude/skills/modulex/   a skill (SKILL.md, references, assets)
-.claude/commands/         os cinco comandos, para Claude Code
-.opencode/commands/       os mesmos cinco, conteudo identico, para OpenCode
-.github/assets/           os SVGs do README: banner, badges e os dois diagramas
+.claude/commands/         os sete comandos, para Claude Code
+.opencode/commands/       os mesmos sete, conteudo identico, para OpenCode
+.github/assets/           os SVGs estaticos: badges, banner e os dois
+                          diagramas claro/escuro que o README nao usa mais
+.github/assets/anim/      as doze animacoes que o README usa hoje
 docs/integracao/          prompts de patch: prodx, sprintx, runx, stackx, memox, buildx
 docs/modulos/             o catalogo: INDICE.md, modulos.json, LACUNAS.md
 exemplos/                 o MODULO.md do modulo zero, whatsapp-uazapi
@@ -44,9 +46,28 @@ entre todas as localizações.
 - **Ao alterar as regras invioláveis**, altere no `SKILL.md` (fonte da
   verdade), e verifique se os references, os templates, os patches e o README
   continuam coerentes.
-- **Os SVGs não levam `<script>`, `<foreignObject>`, animação, fonte externa
-  nem `prefers-color-scheme`.** A troca de tema é feita no README, com dois
-  arquivos e o elemento `<picture>`.
+- **Nenhum SVG leva `<script>`, `<foreignObject>` nem fonte externa.** Nos
+  badges e no banner de `.github/assets/`, também não há animação nem
+  `prefers-color-scheme`.
+
+- **As animações vivem só em `.github/assets/anim/`, e são arquivo único.**
+  Elas animam por SMIL (`<animate>`, `<animateMotion>`) e por `@keyframes`
+  num `<style>` interno — nada mais. Não existe par claro/escuro nem
+  `<picture>` para elas: cada animação desenha o próprio cartão sobre fundo
+  `#0d1117`, e por isso lê igual nos dois temas do GitHub. A paleta é a do
+  GitHub escuro, com o azul `#1f6feb` / `#58a6ff` como acento do modulex.
+
+  O README referencia as animações por **caminho relativo**
+  (`.github/assets/anim/<nome>.svg`) e os badges por URL `raw`. Ao mexer numa
+  animação, confirme que o XML continua válido e que nenhum texto vaza do
+  cartão:
+
+  ```bash
+  python3 -c "import xml.dom.minidom,glob;[xml.dom.minidom.parse(f) for f in glob.glob('.github/assets/anim/*.svg')]"
+  ```
+
+  Um `class` duplicado no mesmo elemento quebra o parse e passa despercebido
+  no editor — foi o defeito mais frequente ao construir as doze.
 - **Ao alterar o contrato do `MODULO.md`**, altere em **quatro** lugares e
   confirme que continuam coerentes: `references/04-contrato.md` (a norma),
   `assets/TEMPLATE-MODULO.md` (a forma), `exemplos/MODULO.whatsapp-uazapi.md`
@@ -127,4 +148,5 @@ E as duas que governam a publicação:
 ## Para usar a skill
 
 Veja o `README.md`. Os comandos são `/modulex`, `/modulex-buscar`,
-`/modulex-injetar`, `/modulex-extrair` e `/modulex-verificar`.
+`/modulex-injetar`, `/modulex-extrair`, `/modulex-verificar`,
+`/modulex-publicar` e `/modulex-sincronizar`.

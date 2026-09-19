@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="A esteira: o hook enfileira candidato ao fim da entrega, o script preenche a metade mecânica e o julgamento humano promove o candidato a módulo.">
+<title>A esteira da modulex: o hook enfileira candidato, nunca extrai módulo</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes node{0%{opacity:0}2%{opacity:1}90%{opacity:1}95%,100%{opacity:0}}
+@keyframes auto{0%{opacity:.2}2%{opacity:1}92%{opacity:1}96%,100%{opacity:.2}}
+@keyframes hum{0%{opacity:.2}2%{opacity:1}92%{opacity:1}96%,100%{opacity:.2}}
+@keyframes localp{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes gate{0%,52%{opacity:0;transform:scale(.92)}56%{opacity:1;transform:none}92%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+.nd{opacity:0;animation-name:node;animation-duration:15s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+.au{opacity:.2;animation-name:auto;animation-duration:15s;animation-timing-function:ease-out;animation-iteration-count:infinite}
+.hu{opacity:.2;animation-name:hum;animation-duration:15s;animation-timing-function:ease-out;animation-iteration-count:infinite}
+</style>
+<defs>
+  <marker id="t-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#30363d"/></marker>
+</defs>
+
+<rect x="0.5" y="0.5" width="999" height="439" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">O hook não extrai módulo: ele enfileira candidato</text>
+<text class="s dim" x="964" y="38" text-anchor="end" font-size="13">a M2 é o estágio que ninguém roda — não por preguiça, por custo</text>
+
+<!-- fluxo -->
+<g class="m">
+  <rect x="36" y="58" width="180" height="60" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="126" y="83" text-anchor="middle" font-size="12" class="br">feature entregue</text>
+  <text x="126" y="101" text-anchor="middle" font-size="10.5" class="dim">relatório da mergex</text>
+
+  <rect x="246" y="58" width="220" height="60" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="246" y="58" width="220" height="60" rx="10" fill="#121d2f" stroke="#1f6feb" class="nd" style="animation-delay:1s"/>
+  <text x="356" y="83" text-anchor="middle" font-size="12" class="br">detectar_candidato.py</text>
+  <text x="356" y="101" text-anchor="middle" font-size="10.5" class="dim">sai com código 0 mesmo se quebrar</text>
+
+  <rect x="496" y="58" width="170" height="60" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="496" y="58" width="170" height="60" rx="10" fill="#1d1a12" stroke="#d29922" class="nd" style="animation-delay:3s"/>
+  <text x="581" y="83" text-anchor="middle" font-size="12" class="br">.expx/modulex/fila/</text>
+  <text x="581" y="101" text-anchor="middle" font-size="10.5" fill="#d29922" style="animation:localp 3s ease-in-out infinite">LOCAL — nunca publicado</text>
+
+  <rect x="696" y="58" width="150" height="60" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="696" y="58" width="150" height="60" rx="10" fill="#121d2f" stroke="#1f6feb" class="nd" style="animation-delay:8s"/>
+  <text x="771" y="83" text-anchor="middle" font-size="12" class="br">M2 + humano</text>
+  <text x="771" y="101" text-anchor="middle" font-size="10.5" class="dim">promove</text>
+
+  <rect x="876" y="58" width="88" height="60" rx="10" fill="#0f1f16" stroke="#3fb950"/>
+  <rect x="876" y="58" width="88" height="60" rx="10" fill="#14311f" stroke="#3fb950" class="nd" style="animation-delay:12s"/>
+  <text x="920" y="83" text-anchor="middle" font-size="11.5" fill="#3fb950">MODULO.md</text>
+  <text x="920" y="101" text-anchor="middle" font-size="10.5" class="dim">no catálogo</text>
+</g>
+<g fill="none" stroke="#30363d" stroke-width="1.5" marker-end="url(#t-a)">
+  <path d="M216 88 H242"/><path d="M466 88 H492"/><path d="M666 88 H692"/><path d="M846 88 H872"/>
+</g>
+<g fill="#1f6feb">
+  <circle r="4"><animateMotion dur="15s" repeatCount="indefinite" path="M216 88 H242" keyPoints="0;0;1;1" keyTimes="0;0.04;0.07;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.07;0.08;1" dur="15s" repeatCount="indefinite"/></circle>
+  <circle r="4"><animateMotion dur="15s" repeatCount="indefinite" path="M466 88 H492" keyPoints="0;0;1;1" keyTimes="0;0.17;0.2;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.17;0.2;0.21;1" dur="15s" repeatCount="indefinite"/></circle>
+  <circle r="4"><animateMotion dur="15s" repeatCount="indefinite" path="M666 88 H692" keyPoints="0;0;1;1" keyTimes="0;0.5;0.53;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.5;0.53;0.54;1" dur="15s" repeatCount="indefinite"/></circle>
+  <circle r="4" fill="#3fb950"><animateMotion dur="15s" repeatCount="indefinite" path="M846 88 H872" keyPoints="0;0;1;1" keyTimes="0;0.77;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.4 0 0.2 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.77;0.8;0.81;1" dur="15s" repeatCount="indefinite"/></circle>
+</g>
+
+<!-- o que o script observa -->
+<rect x="36" y="142" width="460" height="196" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m" x="56" y="168" font-size="12.5" font-weight="700" fill="#58a6ff">o script observa sozinho</text>
+<text class="s dim" x="476" y="168" text-anchor="end" font-size="11">datas de commit ninguém lembra</text>
+<g class="m" font-size="11.5">
+  <g class="au" style="animation-delay:3.4s"><text x="56" y="196"><tspan class="dim">8 &#160;</tspan><tspan class="mut">faixa de esforço — datas reais de commit</tspan></text></g>
+  <g class="au" style="animation-delay:3.9s"><text x="56" y="220"><tspan class="dim">10 </tspan><tspan class="mut">inventário — arquivos e contagem</tspan></text></g>
+  <g class="au" style="animation-delay:4.4s"><text x="56" y="244"><tspan class="dim">7 &#160;</tspan><tspan class="mut">pré-requisitos — variáveis de credencial</tspan></text></g>
+  <g class="au" style="animation-delay:4.9s"><text x="56" y="268"><tspan class="dim">12 </tspan><tspan class="mut">erros — códigos tratados no código</tspan></text></g>
+  <g class="au" style="animation-delay:5.4s"><text x="56" y="292"><tspan class="dim">14 </tspan><tspan class="mut">procedência — branch, commit, data</tspan></text></g>
+</g>
+<text class="s" x="56" y="320" font-size="11.5" fill="#d29922">a janela do git prova calendário, não esforço</text>
+
+<!-- o que exige julgamento -->
+<rect x="516" y="142" width="448" height="196" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m" x="536" y="168" font-size="12.5" font-weight="700" fill="#d29922">só sai com julgamento</text>
+<text class="s dim" x="944" y="168" text-anchor="end" font-size="11">nenhuma varredura encontra</text>
+<g class="m" font-size="11.5">
+  <g class="hu" style="animation-delay:8.4s"><text x="536" y="196"><tspan class="dim">13 </tspan><tspan class="mut">as lacunas: o que se descobriu na marra</tspan></text></g>
+  <g class="hu" style="animation-delay:8.9s"><text x="536" y="220"><tspan class="dim">4 &#160;</tspan><tspan class="mut">o que o módulo </tspan><tspan class="br">não</tspan><tspan class="mut"> cobre</tspan></text></g>
+  <g class="hu" style="animation-delay:9.4s"><text x="536" y="244"><tspan class="dim">6 &#160;</tspan><tspan class="mut">essencial × herdado</tspan></text></g>
+  <g class="hu" style="animation-delay:9.9s"><text x="536" y="268"><tspan class="dim">5 &#160;</tspan><tspan class="mut">decisões, com a alternativa descartada</tspan></text></g>
+  <g class="hu" style="animation-delay:10.4s"><text x="536" y="292"><tspan class="dim">1 &#160;</tspan><tspan class="mut">o problema na linguagem de quem pede</tspan></text></g>
+</g>
+<text class="s" x="536" y="320" font-size="11.5" fill="#8b949e">o script é bom exatamente onde o humano é ruim</text>
+
+<!-- candidato x modulo -->
+<g opacity="0" style="animation:gate 15s cubic-bezier(.2,.7,.2,1) infinite;transform-box:fill-box;transform-origin:center">
+  <rect x="36" y="354" width="928" height="72" rx="10" fill="#0d1117" stroke="#d29922"/>
+  <text class="m" x="56" y="378" font-size="12.5" font-weight="700" fill="#d29922">candidato não é módulo</text>
+  <text class="s mut" x="56" y="398" font-size="12">Ele aparece na M0 <tspan class="br">marcado</tspan> — a informação mais valiosa dele é que ele existe: manda conversar com quem fez, em vez de começar do zero.</text>
+  <text class="s dim" x="56" y="416" font-size="11.5">O que ele não pode é virar rascunho de sprint na F3 nem artefato copiado na F6. Hook enfileira; quem extrai é a M2, com humano.</text>
+</g>
+</svg>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="450" viewBox="0 0 1000 450" role="img" aria-label="O ciclo da modulex: a consulta lê um arquivo, a injeção puxa um segundo, os artefatos só descem na F6, e a extração devolve o módulo ao catálogo. A verificação impede o módulo de envelhecer.">
+<title>O ciclo da modulex: consulta barata, injeção sob demanda, extração que fecha o ciclo, verificação que impede o módulo de envelhecer</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes box{0%{opacity:0}2%{opacity:1}22%{opacity:1}25%{opacity:0}100%{opacity:0}}
+@keyframes ttl{0%{fill:#8b949e}2%{fill:#58a6ff}22%{fill:#58a6ff}25%{fill:#8b949e}100%{fill:#8b949e}}
+@keyframes cap{0%{fill:#6e7681}2%{fill:#e6edf3}22%{fill:#e6edf3}25%{fill:#6e7681}100%{fill:#6e7681}}
+@keyframes bar{0%{width:0px}6%{width:150px}31%{width:150px}34%{width:396px}56%{width:396px}59%{width:876px}86%{width:876px}90%,100%{width:876px}}
+@keyframes barc{0%,33%{fill:#3fb950}34%,58%{fill:#d29922}59%,100%{fill:#f85149}}
+@keyframes ret{0%{stroke-dashoffset:820;opacity:0}74%{stroke-dashoffset:820;opacity:0}78%{opacity:1}92%{stroke-dashoffset:0;opacity:1}98%{opacity:1}100%{opacity:0}}
+@keyframes rett{0%,78%{opacity:0}84%,98%{opacity:1}100%{opacity:0}}
+@keyframes agerow{0%{opacity:.3}4%{opacity:1}30%{opacity:1}34%,100%{opacity:.3}}
+@keyframes outrow{0%{opacity:.25}3%{opacity:1}22%{opacity:1}25%,100%{opacity:.25}}
+.bx{opacity:0;animation-name:box;animation-duration:16s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.tt{animation-name:ttl;animation-duration:16s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.cp{animation-name:cap;animation-duration:16s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.ag{animation-name:agerow;animation-duration:16s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.ou{animation-name:outrow;animation-duration:16s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+</style>
+<defs><marker id="c-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#30363d"/></marker></defs>
+
+<rect x="0.5" y="0.5" width="999" height="449" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">A consulta é barata. Só a injeção puxa peso.</text>
+<text class="s dim" x="964" y="38" text-anchor="end" font-size="13">se a operação mais frequente for cara, ninguém usa e a skill morre</text>
+
+<!-- estágios -->
+<g class="m">
+  <rect x="36" y="62" width="216" height="86" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="36" y="62" width="216" height="86" rx="10" fill="#121d2f" stroke="#1f6feb" class="bx" style="animation-delay:0s"/>
+  <text x="144" y="90" text-anchor="middle" font-size="13.5" font-weight="700" class="mut tt" style="animation-delay:0s">M0 consultar</text>
+  <text x="144" y="112" text-anchor="middle" font-size="11" class="dim cp" style="animation-delay:0s">lê só modulos.json</text>
+  <text x="144" y="132" text-anchor="middle" font-size="11" fill="#3fb950">1 arquivo · offline</text>
+
+  <rect x="276" y="62" width="216" height="86" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="276" y="62" width="216" height="86" rx="10" fill="#121d2f" stroke="#1f6feb" class="bx" style="animation-delay:4s"/>
+  <text x="384" y="90" text-anchor="middle" font-size="13.5" font-weight="700" class="mut tt" style="animation-delay:4s">M1 injetar</text>
+  <text x="384" y="112" text-anchor="middle" font-size="11" class="dim cp" style="animation-delay:4s">só as fatias escolhidas</text>
+  <text x="384" y="132" text-anchor="middle" font-size="11" fill="#d29922">+ 1 MODULO.md</text>
+
+  <rect x="516" y="62" width="216" height="86" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="516" y="62" width="216" height="86" rx="10" fill="#121d2f" stroke="#1f6feb" class="bx" style="animation-delay:8s"/>
+  <text x="624" y="90" text-anchor="middle" font-size="13.5" font-weight="700" class="mut tt" style="animation-delay:8s">F6 do sprintx</text>
+  <text x="624" y="112" text-anchor="middle" font-size="11" class="dim cp" style="animation-delay:8s">copia o artefato, sob TDD</text>
+  <text x="624" y="132" text-anchor="middle" font-size="11" fill="#f85149">+150 arquivos — só aqui</text>
+
+  <rect x="756" y="62" width="216" height="86" rx="10" fill="#0f1f16" stroke="#3fb950"/>
+  <rect x="756" y="62" width="216" height="86" rx="10" fill="#14311f" stroke="#3fb950" class="bx" style="animation-delay:12s"/>
+  <text x="864" y="90" text-anchor="middle" font-size="13.5" font-weight="700" fill="#3fb950">M2 extrair</text>
+  <text x="864" y="112" text-anchor="middle" font-size="11" class="dim cp" style="animation-delay:12s">a feature entregue vira módulo</text>
+  <text x="864" y="132" text-anchor="middle" font-size="11" fill="#3fb950">é o que fecha o ciclo</text>
+</g>
+<g fill="none" stroke="#30363d" stroke-width="1.5" marker-end="url(#c-a)">
+  <path d="M252 105 H272"/><path d="M492 105 H512"/><path d="M732 105 H752"/>
+</g>
+
+<!-- barra de custo -->
+<text class="s dim" x="36" y="176" font-size="11">custo acumulado</text>
+<rect x="36" y="184" width="876" height="8" rx="4" fill="#21262d"/>
+<rect x="36" y="184" width="0" height="8" rx="4" fill="#3fb950" style="animation:bar 16s cubic-bezier(.3,0,.2,1) infinite,barc 16s step-end infinite"/>
+<text class="m dim" x="964" y="176" text-anchor="end" font-size="11">nenhum artefato desce antes da F6</text>
+
+<!-- retorno -->
+<path d="M864 200 V224 H144 V206" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="6 5" pathLength="820" stroke-dashoffset="820" style="animation:ret 16s linear infinite" opacity="0"/>
+<text class="s" x="500" y="246" text-anchor="middle" font-size="12.5" fill="#3fb950" opacity="0" style="animation:rett 16s ease-in-out infinite">o módulo novo volta ao catálogo — e a próxima consulta já o acha</text>
+
+<!-- M3 -->
+<rect x="36" y="264" width="460" height="152" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="56" y="290" font-size="13" font-weight="700">M3 verificar — o módulo envelhece</text>
+<g class="m" font-size="11.5">
+  <g class="ag" style="animation-delay:0s"><text x="56" y="318" class="mut">contrato da API, erros, pré-requisitos</text><text x="476" y="318" text-anchor="end" class="br">6 meses</text></g>
+  <g class="ag" style="animation-delay:1.6s"><text x="56" y="342" class="mut">cadeia de falha, plano, stack, esforço</text><text x="476" y="342" text-anchor="end" class="br">12 meses</text></g>
+  <g class="ag" style="animation-delay:3.2s"><text x="56" y="366" class="mut">problema, sinônimos, fatias, cobertura</text><text x="476" y="366" text-anchor="end" class="br">24 meses</text></g>
+</g>
+<text class="s" x="56" y="396" font-size="11.5" fill="#f85149">módulo desatualizado é pior que módulo nenhum: produz plano confiante e errado</text>
+
+<!-- desfechos da M0 -->
+<rect x="516" y="264" width="448" height="152" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="536" y="290" font-size="13" font-weight="700">os quatro desfechos da M0</text>
+<g class="m" font-size="11.5">
+  <g class="ou" style="animation-delay:0s"><circle cx="542" cy="314" r="4" fill="#3fb950"/><text x="556" y="318" class="mut">achou — lista fatias e esforço, e <tspan class="br">não escolhe</tspan></text></g>
+  <g class="ou" style="animation-delay:4s"><circle cx="542" cy="338" r="4" fill="#d29922"/><text x="556" y="342" class="mut">achou vencido — responde <tspan class="br">com o aviso</tspan> e oferece M3</text></g>
+  <g class="ou" style="animation-delay:8s"><circle cx="542" cy="362" r="4" fill="#f85149"/><text x="556" y="366" class="mut">não achou — registra a busca em <tspan class="br">LACUNAS.md</tspan></text></g>
+  <g class="ou" style="animation-delay:12s"><circle cx="542" cy="386" r="4" fill="#6e7681"/><text x="556" y="390" class="mut">catálogo não alcançável — segue sem módulo</text></g>
+</g>
+<text class="s dim" x="536" y="406" font-size="11">não alcançável não é NAO EXISTE: a primeira não registra lacuna</text>
+</svg>

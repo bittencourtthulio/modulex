@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-label="Demonstração: o usuário descreve o problema, a modulex acha o módulo pronto, injeta só as fatias escolhidas e devolve a feature entregue ao catálogo.">
+<title>Demonstração da modulex: da descrição do problema ao módulo injetado, e de volta ao catálogo</title>
+<style>
+text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;font-size:14px;fill:#8b949e}
+.t{fill:#e6edf3;font-weight:700}.b{fill:#58a6ff}.g{fill:#3fb950}.y{fill:#d29922}.d{fill:#6e7681}.m{fill:#8b949e}
+.ln{opacity:0}.mk{opacity:0}
+@keyframes fade{0%,96%{opacity:1;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes type{0%{width:2px}21.25%,100%{width:432px}}
+@keyframes curx{0%{x:57px}21.25%,100%{x:487px}}
+@keyframes cur{0%,21%{opacity:1}21.5%,100%{opacity:0}}
+@keyframes blink{0%{opacity:1}60%{opacity:0}100%{opacity:0}}
+@keyframes l1{0%,22%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}24%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l2{0%,27%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}29%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l3{0%,33%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}35%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l4{0%,40%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}42%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l5{0%,50%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}52%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l6{0%,55%{opacity:0;transform:translateY(4px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}57%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l7{0%,61%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}63%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l8{0%,67%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}69%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l9{0%,78%{opacity:0;transform:translateY(6px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}80%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes l10{0%,87%{opacity:0;transform:translateY(8px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}90%{opacity:1;transform:none}96%{opacity:1;transform:none;animation-timing-function:ease-in-out}98%,100%{opacity:0}}
+@keyframes g1{0%,33%{opacity:1}34%{opacity:0}98%{opacity:0}100%{opacity:1}}
+@keyframes g2{0%,40%{opacity:1}41%{opacity:0}98%{opacity:0}100%{opacity:1}}
+@keyframes g3{0%,61%{opacity:1}62%{opacity:0}98%{opacity:0}100%{opacity:1}}
+@keyframes g4{0%,78%{opacity:1}79%{opacity:0}98%{opacity:0}100%{opacity:1}}
+@keyframes m1{0%,31%{opacity:0;animation-timing-function:ease-out}32.5%,100%{opacity:1}}
+@keyframes m2{0%,37%{opacity:0;animation-timing-function:ease-out}38.5%,100%{opacity:1}}
+@keyframes m3{0%,48%{opacity:0;animation-timing-function:ease-out}49.5%,100%{opacity:1}}
+@keyframes m4{0%,54%{opacity:0;animation-timing-function:ease-out}55.5%,100%{opacity:1}}
+@keyframes m5{0%,65%{opacity:0;animation-timing-function:ease-out}66.5%,100%{opacity:1}}
+@keyframes m6{0%,76%{opacity:0;animation-timing-function:ease-out}77.5%,100%{opacity:1}}
+@keyframes m7{0%,85%{opacity:0;animation-timing-function:ease-out}86.5%,100%{opacity:1}}
+@keyframes q{0%,42%{opacity:0}42.4%,44%{opacity:1}44.4%,46%{opacity:0}46.4%,48%{opacity:1}48.4%,100%{opacity:0}}
+@keyframes b1{0%,69.5%{fill:#30363d;animation-timing-function:ease-out}70.5%,100%{fill:#1f6feb}}
+@keyframes b2{0%,70.5%{fill:#30363d;animation-timing-function:ease-out}71.5%,100%{fill:#1f6feb}}
+@keyframes b3{0%,71.5%{fill:#30363d;animation-timing-function:ease-out}72.5%,100%{fill:#1f6feb}}
+@keyframes b4{0%,72.5%{fill:#30363d;animation-timing-function:ease-out}73.5%,100%{fill:#1f6feb}}
+@keyframes b5{0%,73.5%{fill:#30363d;animation-timing-function:ease-out}74.5%,100%{fill:#1f6feb}}
+@keyframes b6{0%,74.5%{fill:#30363d;animation-timing-function:ease-out}75.5%,100%{fill:#1f6feb}}
+@keyframes glow{0%,87%{opacity:0}90%{opacity:.55}93%{opacity:.85}96%{opacity:.55}98%,100%{opacity:0}}
+</style>
+<defs>
+<clipPath id="card"><rect width="1000" height="500" rx="16"/></clipPath>
+<clipPath id="typeclip"><rect x="54" y="72" height="26" width="2" style="animation:type 16s steps(51,end) infinite"/></clipPath>
+<filter id="blur" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+
+<g clip-path="url(#card)">
+  <rect width="1000" height="500" fill="#0d1117"/>
+  <rect width="1000" height="44" fill="#161b22"/>
+  <rect y="466" width="1000" height="34" fill="#161b22"/>
+</g>
+<line x1="0" y1="44.5" x2="1000" y2="44.5" stroke="#30363d"/>
+<line x1="0" y1="466.5" x2="1000" y2="466.5" stroke="#30363d"/>
+<circle cx="26" cy="22" r="6" fill="#f85149"/><circle cx="46" cy="22" r="6" fill="#d29922"/><circle cx="66" cy="22" r="6" fill="#3fb950"/>
+<text x="500" y="26.5" text-anchor="middle" font-size="12" class="m">modulex — atender cliente por WhatsApp</text>
+<circle cx="40" cy="483" r="4" fill="#1f6feb"/>
+<text x="52" y="487.5" font-size="12"><tspan class="b">modulex</tspan><tspan class="d"> · Claude Code + OpenCode</tspan></text>
+<text x="964" y="487.5" font-size="12" text-anchor="end" class="d">catálogo: degrau 2 · offline · 1 arquivo lido</text>
+
+<text x="36" y="90" class="b" font-weight="700">&#10095;</text>
+<text x="56" y="90" fill="#e6edf3" clip-path="url(#typeclip)" style="animation:fade 16s linear infinite">Preciso que o sistema atenda cliente pelo WhatsApp.</text>
+<g style="animation:cur 16s linear infinite">
+  <rect x="57" y="77" width="8" height="17" rx="1" fill="#1f6feb" style="animation:curx 16s steps(51,end) infinite,blink 1s steps(1,end) infinite"/>
+</g>
+
+<!-- esqueletos -->
+<g style="animation:g1 16s linear infinite"><text x="36" y="168" class="d">M0 CONSULTA</text><text x="206" y="168" class="d">—</text></g>
+<g style="animation:g2 16s linear infinite"><text x="36" y="228" class="d">M1 INJEÇÃO</text><text x="206" y="228" class="d">—</text></g>
+<g style="animation:g3 16s linear infinite"><text x="36" y="312" class="d">sprintx F1</text><text x="206" y="312" class="d">—</text></g>
+<g style="animation:g4 16s linear infinite"><text x="36" y="384" class="d">M2 EXTRAÇÃO</text><text x="206" y="384" class="d">—</text></g>
+
+<!-- linhas -->
+<g class="ln" style="animation:l1 16s linear infinite">
+  <text x="36" y="126" class="m">modulex · degrau <tspan fill="#e6edf3">2</tspan> · <tspan fill="#e6edf3">.expx/modulex/docs/modulos/</tspan> · atualizado_em <tspan fill="#e6edf3">2026-09-19</tspan></text>
+</g>
+
+<g class="ln" style="animation:l2 16s linear infinite">
+  <text x="36" y="168" class="t">M0 CONSULTA</text>
+  <text x="206" y="168" class="m">lê só <tspan fill="#e6edf3">modulos.json</tspan> — 1 arquivo, sem rede</text>
+  <g class="mk" style="animation:m1 16s linear infinite" transform="translate(706,157.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g class="ln" style="animation:l3 16s linear infinite">
+  <text x="206" y="192" class="m"><tspan class="b" font-weight="700">whatsapp-uazapi</tspan> · 6 fatias · verificado_em 2026-08-24</text>
+  <g class="mk" style="animation:m2 16s linear infinite" transform="translate(706,181.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+
+<g class="ln" style="animation:l4 16s linear infinite">
+  <text x="36" y="228" class="t">M1 INJEÇÃO</text>
+  <text x="206" y="228" class="m">quais fatias? &#160;<tspan fill="#e6edf3">nucleo</tspan> + <tspan fill="#e6edf3">organizacao</tspan></text>
+  <text x="708" y="228" class="y mk" font-size="15" font-weight="700" style="animation:q 16s linear infinite">?</text>
+  <g class="mk" style="animation:m3 16s linear infinite" transform="translate(706,217.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g class="ln" style="animation:l5 16s linear infinite">
+  <text x="206" y="252" class="m">base/<tspan fill="#e6edf3">modulo-whatsapp-uazapi.md</tspan> — cada bloco marcado</text>
+  <g class="mk" style="animation:m4 16s linear infinite" transform="translate(706,241.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g class="ln" style="animation:l6 16s linear infinite">
+  <text x="206" y="276" font-size="13" class="d">plano → <tspan fill="#8b949e">rascunho</tspan> &#160;·&#160; decisões → <tspan fill="#8b949e">pauta da F2</tspan> &#160;·&#160; artefato → <tspan fill="#8b949e">copiar sob TDD</tspan></text>
+</g>
+
+<g class="ln" style="animation:l7 16s linear infinite">
+  <text x="36" y="312" class="t">sprintx F1</text>
+  <text x="206" y="312" class="m">base de conhecimento pronta — segue para a F2</text>
+  <g class="mk" style="animation:m5 16s linear infinite" transform="translate(706,301.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g class="ln" style="animation:l8 16s linear infinite">
+  <text x="36" y="348" class="t">sprintx F6</text>
+  <rect x="206" y="337" width="14" height="12" rx="2" fill="#30363d" style="animation:b1 16s linear infinite"/>
+  <rect x="224" y="337" width="14" height="12" rx="2" fill="#30363d" style="animation:b2 16s linear infinite"/>
+  <rect x="242" y="337" width="14" height="12" rx="2" fill="#30363d" style="animation:b3 16s linear infinite"/>
+  <rect x="260" y="337" width="14" height="12" rx="2" fill="#30363d" style="animation:b4 16s linear infinite"/>
+  <rect x="278" y="337" width="14" height="12" rx="2" fill="#30363d" style="animation:b5 16s linear infinite"/>
+  <rect x="296" y="337" width="14" height="12" rx="2" fill="#30363d" style="animation:b6 16s linear infinite"/>
+  <text x="326" y="348" class="m">os 150+ artefatos descem <tspan fill="#e6edf3">só aqui</tspan>, sob TDD</text>
+  <g class="mk" style="animation:m6 16s linear infinite" transform="translate(706,337.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+
+<g class="ln" style="animation:l9 16s linear infinite">
+  <text x="36" y="384" class="t">M2 EXTRAÇÃO</text>
+  <text x="206" y="384" class="m">a feature entregue <tspan class="g">volta ao catálogo</tspan> — o ciclo fecha</text>
+  <g class="mk" style="animation:m7 16s linear infinite" transform="translate(706,373.5) scale(1.25)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+
+<g class="ln" style="animation:l10 16s linear infinite">
+  <g filter="url(#blur)" style="opacity:0;animation:glow 16s ease-in-out infinite">
+    <g transform="translate(36,415.5) scale(1.5)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="60" y="428" font-size="16" font-weight="700" class="g">a descoberta que não se repete</text>
+  </g>
+  <g transform="translate(36,415.5) scale(1.5)"><path d="M0 5 l3.5 3.5 L10 1" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="60" y="428" font-size="16" font-weight="700" class="g">a descoberta que não se repete</text>
+  <text x="964" y="428" text-anchor="end" font-size="13" class="d">nenhuma pergunta feita duas vezes</text>
+</g>
+
+<rect x="0.5" y="0.5" width="999" height="499" rx="16" fill="none" stroke="#30363d"/>
+</svg>

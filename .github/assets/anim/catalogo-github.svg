@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="464" viewBox="0 0 1000 464" role="img" aria-label="O catálogo em nuvem é o GitHub: o gate roda na máquina antes do push, o PR é a aprovação humana, o Actions é o contrato como teste, e a consulta continua offline.">
+<title>O catálogo da modulex no GitHub: gate na máquina, PR como aprovação, Actions como teste, consulta offline</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes on{0%{opacity:0}2%{opacity:1}92%{opacity:1}96%,100%{opacity:0}}
+@keyframes chk{0%{opacity:0;transform:scale(.6)}2%{opacity:1;transform:none}92%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+@keyframes sweep{0%,11%{opacity:0}12%{opacity:1;transform:translateY(0)}22%{opacity:1;transform:translateY(58px)}24%,100%{opacity:0;transform:translateY(58px)}}
+@keyframes votes{0%,40%{width:0px}52%{width:112px}92%{width:112px}96%,100%{width:0px}}
+@keyframes pulsestroke{0%,100%{stroke:#30363d}30%,60%{stroke:#1f6feb}}
+.n{opacity:0;animation-name:on;animation-duration:18s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+.c{opacity:0;transform-box:fill-box;transform-origin:center;animation-name:chk;animation-duration:18s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+</style>
+<defs><marker id="k-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#30363d"/></marker>
+<clipPath id="k-gate"><rect x="258" y="62" width="226" height="72" rx="10"/></clipPath></defs>
+
+<rect x="0.5" y="0.5" width="999" height="463" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">Sem servidor, sem banco, sem serviço próprio</text>
+<text class="s dim" x="964" y="38" text-anchor="end" font-size="13">em três pontos o primitivo nativo é melhor que a alternativa construída</text>
+
+<!-- linha 1 -->
+<g class="m">
+  <rect x="36" y="60" width="190" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="131" y="88" text-anchor="middle" font-size="12" class="br">MODULO.md pronto</text>
+  <text x="131" y="108" text-anchor="middle" font-size="10.5" class="dim">extraído, nunca raspado</text>
+  <text x="131" y="124" text-anchor="middle" font-size="10.5" class="dim">o que não está no schema</text>
+
+  <rect x="256" y="60" width="230" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <g clip-path="url(#k-gate)"><rect x="258" y="66" width="226" height="2" fill="#1f6feb" opacity="0" style="animation:sweep 18s ease-in-out infinite"/></g>
+  <text x="371" y="88" text-anchor="middle" font-size="12" class="br">gate_publicacao.py</text>
+  <text x="371" y="108" text-anchor="middle" font-size="10.5" class="dim">na máquina, antes do push</text>
+  <g class="n" style="animation-delay:4.2s"><text x="371" y="126" text-anchor="middle" font-size="10.5" fill="#3fb950">sem segredo · sem dado de cliente</text></g>
+
+  <rect x="516" y="60" width="190" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="516" y="60" width="190" height="76" rx="10" fill="#121d2f" stroke="#1f6feb" class="n" style="animation-delay:5.6s"/>
+  <text x="611" y="88" text-anchor="middle" font-size="12" class="br">PR no catálogo</text>
+  <g class="n" style="animation-delay:10.4s"><rect x="536" y="98" width="150" height="24" rx="12" fill="#238636" fill-opacity=".18" stroke="#3fb950"/><text x="611" y="114" text-anchor="middle" font-size="11" fill="#3fb950">o PR já é a aprovação</text></g>
+
+  <rect x="736" y="60" width="228" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="752" y="84" font-size="11" class="br">Actions — o contrato como teste</text>
+  <g font-size="10.5" class="mut">
+    <g class="c" style="animation-delay:7.2s"><text x="752" y="104"><tspan fill="#3fb950">&#10003;</tspan> validar_modulo.py --todos</text></g>
+    <g class="c" style="animation-delay:8.0s"><text x="752" y="120"><tspan fill="#3fb950">&#10003;</tspan> reindexar.py --conferir</text></g>
+  </g>
+</g>
+<g fill="none" stroke="#30363d" stroke-width="1.5" marker-end="url(#k-a)">
+  <path d="M226 98 H252"/><path d="M486 98 H512"/><path d="M706 98 H732"/>
+</g>
+
+<!-- linha 2 -->
+<g class="m">
+  <rect x="36" y="166" width="228" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="36" y="166" width="228" height="76" rx="10" fill="#121d2f" stroke="#1f6feb" class="n" style="animation-delay:11.4s"/>
+  <text x="150" y="194" text-anchor="middle" font-size="12" class="br">merge → reindexar.py</text>
+  <text x="150" y="214" text-anchor="middle" font-size="10.5" class="dim">o índice derivado dos MODULO.md</text>
+  <text x="150" y="230" text-anchor="middle" font-size="10.5" class="dim">nunca escrito à mão</text>
+
+  <rect x="294" y="166" width="228" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="294" y="166" width="228" height="76" rx="10" fill="#121d2f" stroke="#1f6feb" class="n" style="animation-delay:12.2s"/>
+  <text x="408" y="194" text-anchor="middle" font-size="12" class="br">modulos.json por raw</text>
+  <text x="408" y="214" text-anchor="middle" font-size="10.5" class="dim">com CDN na frente</text>
+  <text x="408" y="230" text-anchor="middle" font-size="10.5" class="dim">o banco que não foi construído</text>
+
+  <rect x="552" y="166" width="200" height="76" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="552" y="166" width="200" height="76" rx="10" fill="#121d2f" stroke="#1f6feb" class="n" style="animation-delay:13s"/>
+  <text x="652" y="194" text-anchor="middle" font-size="12" class="br">sincronizar.py</text>
+  <text x="652" y="214" text-anchor="middle" font-size="10.5" fill="#d29922">o único ponto que toca a rede</text>
+  <text x="652" y="230" text-anchor="middle" font-size="10.5" class="dim">deixa o catálogo no degrau 2</text>
+
+  <rect x="782" y="166" width="182" height="76" rx="10" fill="#0f1f16" stroke="#3fb950"/>
+  <rect x="782" y="166" width="182" height="76" rx="10" fill="#14311f" stroke="#3fb950" class="n" style="animation-delay:13.8s"/>
+  <text x="873" y="194" text-anchor="middle" font-size="12" fill="#3fb950">M0 — offline</text>
+  <text x="873" y="214" text-anchor="middle" font-size="10.5" class="dim">1 arquivo local</text>
+  <text x="873" y="230" text-anchor="middle" font-size="10.5" class="dim">rede fora nunca bloqueia</text>
+</g>
+<g fill="none" stroke="#30363d" stroke-width="1.5" marker-end="url(#k-a)">
+  <path d="M264 204 H290"/><path d="M522 204 H548"/><path d="M752 204 H778"/>
+</g>
+
+<!-- painéis -->
+<rect x="36" y="272" width="460" height="130" rx="10" fill="#161b22" stroke="#30363d" style="animation:pulsestroke 18s ease-in-out infinite"/>
+<text class="m br" x="56" y="298" font-size="12.5" font-weight="700">a issue é a lacuna global</text>
+<text class="s dim" x="56" y="318" font-size="11.5">busca sem resultado vira issue com label <tspan class="m" fill="#58a6ff">lacuna</tspan></text>
+<g class="m" font-size="11.5">
+  <text x="56" y="346" class="mut">#12 &#160;cobrar cartão recorrente</text>
+  <rect x="320" y="336" width="112" height="12" rx="6" fill="#21262d"/>
+  <rect x="320" y="336" width="0" height="12" rx="6" fill="#1f6feb" style="animation:votes 18s cubic-bezier(.3,0,.2,1) infinite"/>
+  <text x="444" y="346" class="dim">&#128077; 9</text>
+  <text x="56" y="372" class="mut">#18 &#160;assinatura digital de contrato</text>
+  <rect x="320" y="362" width="112" height="12" rx="6" fill="#21262d"/>
+  <rect x="320" y="362" width="46" height="12" rx="6" fill="#30363d"/>
+  <text x="444" y="372" class="dim">&#128077; 4</text>
+</g>
+<text class="s dim" x="56" y="392" font-size="11">em meses, a fila de extração está priorizada por demanda real</text>
+
+<rect x="516" y="272" width="448" height="130" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m br" x="536" y="298" font-size="12.5" font-weight="700">o Actions é o cron do vencimento</text>
+<text class="s dim" x="536" y="318" font-size="11.5">transforma "alguém devia revisar" em issue com nome e prazo</text>
+<g class="n" style="animation-delay:15s">
+  <rect x="536" y="330" width="408" height="46" rx="8" fill="#0d1117" stroke="#d29922"/>
+  <circle cx="556" cy="353" r="5" fill="none" stroke="#d29922" stroke-width="1.5"/>
+  <text class="m" x="572" y="349" font-size="11.5" fill="#d29922">M3: whatsapp-uazapi vence em 2027-02-24</text>
+  <text class="m dim" x="572" y="365" font-size="10.5">aberta pelo schedule · revalidar contrato da API</text>
+</g>
+<text class="s dim" x="536" y="392" font-size="11">o que se perde, declarado: telemetria de leitura agregada</text>
+
+<text class="s" x="36" y="426" font-size="12.5" fill="#8b949e"><tspan fill="#e6edf3">Anonimizar falha aberto</tspan> — o que o padrão não pegou vai junto, e em repositório público não volta.</text>
+<text class="s" x="36" y="446" font-size="12.5" fill="#8b949e"><tspan fill="#e6edf3">Extrair falha fechado</tspan> — o que não está no schema nunca foi copiado. O gate é a última linha, não a primeira, e roda na máquina antes do push.</text>
+</svg>

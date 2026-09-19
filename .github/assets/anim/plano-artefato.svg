@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="410" viewBox="0 0 1000 410" role="img" aria-label="Plano e artefato têm regras opostas: o plano é rascunho a adaptar, o artefato de produção é para copiar. Reescrever perde correções invisíveis, como o GRANT que só se manifesta em array vazio sem erro.">
+<title>Plano e artefato: regras opostas, e a cicatriz que a reescrita perde</title>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.s{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.mut{fill:#8b949e}.dim{fill:#6e7681}.br{fill:#e6edf3}
+@keyframes ln{0%{opacity:0;transform:translateX(-6px)}4%{opacity:1;transform:none}92%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+@keyframes lost{0%,30%{opacity:1;fill:#8b949e}36%{opacity:1;fill:#f85149}44%{opacity:.25;fill:#f85149}92%{opacity:.25;fill:#f85149}96%,100%{opacity:1;fill:#8b949e}}
+@keyframes strike{0%,36%{width:0px}44%{width:300px}92%{width:300px}96%,100%{width:0px}}
+@keyframes conseq{0%,48%{opacity:0;transform:translateY(6px)}54%{opacity:1;transform:none}92%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+@keyframes tdd{0%,74%{opacity:0;transform:scale(.94)}79%{opacity:1;transform:none}94%{opacity:1;transform:none}97%,100%{opacity:0;transform:none}}
+.l{opacity:0;animation-name:ln;animation-duration:14s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-iteration-count:infinite}
+</style>
+
+<rect x="0.5" y="0.5" width="999" height="409" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text class="s br" x="36" y="38" font-size="15" font-weight="700">Os dois tipos de conteúdo do módulo, e as regras opostas que os governam</text>
+
+<!-- plano -->
+<rect x="36" y="58" width="460" height="116" rx="10" fill="#1d1a12" stroke="#d29922"/>
+<text class="m" x="56" y="84" font-size="12.5" font-weight="700" fill="#d29922">plano</text>
+<text class="s dim" x="476" y="84" text-anchor="end" font-size="11">sprints, fases, gates, ordem de execução</text>
+<text class="s br" x="56" y="110" font-size="13">rascunho a adaptar</text>
+<text class="s mut" x="56" y="132" font-size="12">A F3 continua produzindo o plano real deste projeto. As fases</text>
+<text class="s mut" x="56" y="150" font-size="12">do módulo não conhecem este projeto — elas conhecem o outro.</text>
+<text class="s dim" x="56" y="166" font-size="11">decisão de escopo já fechada entra como pauta da F2, nunca como fato consumado</text>
+
+<!-- artefato -->
+<rect x="516" y="58" width="448" height="116" rx="10" fill="#0f1f16" stroke="#3fb950"/>
+<text class="m" x="536" y="84" font-size="12.5" font-weight="700" fill="#3fb950">artefato</text>
+<text class="s dim" x="944" y="84" text-anchor="end" font-size="11">migration, função, componente</text>
+<text class="s br" x="536" y="110" font-size="13">copiar preferencialmente a reescrever</text>
+<text class="s mut" x="536" y="132" font-size="12">Reescrever perde correções invisíveis: o código que rodou</text>
+<text class="s mut" x="536" y="150" font-size="12">em produção carrega cicatriz que não está visível nele.</text>
+<text class="s dim" x="536" y="166" font-size="11">quando a origem é privada, não há artefato — e isso é declarado, nunca deduzido</text>
+
+<!-- a cicatriz -->
+<rect x="36" y="194" width="560" height="152" rx="10" fill="#161b22" stroke="#30363d"/>
+<text class="m dim" x="56" y="218" font-size="11">o que um CREATE TABLE retypado à mão deixa para trás</text>
+<g class="m" font-size="12">
+  <text x="56" y="246" class="l mut" style="animation-delay:0.4s">create table conversas (…);</text>
+  <text x="56" y="270" class="l mut" style="animation-delay:1.2s">alter table conversas enable row level security;</text>
+  <text x="56" y="294" class="l mut" style="animation-delay:2s">create policy … using (company_id = any(…));</text>
+  <g>
+    <text x="56" y="318" class="mut" style="animation:lost 14s ease-in-out infinite">grant select, insert, update on conversas to authenticated;</text>
+    <rect x="54" y="313" width="0" height="1.5" fill="#f85149" style="animation:strike 14s cubic-bezier(.3,0,.2,1) infinite"/>
+  </g>
+</g>
+<text class="s dim" x="56" y="336" font-size="11">três linhas que qualquer um reescreve — e uma que ninguém lembra</text>
+
+<!-- consequência -->
+<g opacity="0" style="animation:conseq 14s cubic-bezier(.2,.7,.2,1) infinite">
+  <rect x="620" y="194" width="344" height="152" rx="10" fill="#1f1315" stroke="#f85149"/>
+  <text class="m" x="640" y="220" font-size="12.5" font-weight="700" fill="#f85149">sem o GRANT</text>
+  <text class="s mut" x="640" y="248" font-size="12.5">o frontend recebe <tspan class="br">array vazio</tspan></text>
+  <text class="s mut" x="640" y="270" font-size="12.5">e <tspan class="br">nenhum erro</tspan>.</text>
+  <text class="s dim" x="640" y="300" font-size="12">Nada quebra. Nada aparece no log.</text>
+  <text class="s dim" x="640" y="320" font-size="12">A tela só fica vazia — e alguém perde</text>
+  <text class="s dim" x="640" y="336" font-size="12">uma tarde descobrindo por quê.</text>
+</g>
+
+<!-- tdd -->
+<g opacity="0" style="animation:tdd 14s cubic-bezier(.2,.7,.2,1) infinite;transform-box:fill-box;transform-origin:center">
+  <rect x="36" y="362" width="928" height="32" rx="16" fill="#0d1117" stroke="#3fb950"/>
+  <text class="s" x="500" y="383" text-anchor="middle" font-size="12" fill="#e6edf3">O plano se adapta, o artefato se copia — e <tspan fill="#3fb950" font-weight="600">as duas coisas passam pela auditoria da F5 e pelo TDD da F6</tspan>. Artefato copiado sem teste é dívida, não atalho.</text>
+</g>
+</svg>
