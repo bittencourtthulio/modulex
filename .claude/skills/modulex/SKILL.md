@@ -92,9 +92,13 @@ O coração do desenho. O modulex entrega coisas diferentes para cada skill, com
 | **sprintx** | F5 auditoria | As convenções invioláveis e as armadilhas do módulo viram itens de auditoria | Critério de prontidão |
 | **sprintx** | F6 execução | Os artefatos de produção do módulo | Copiar preferencialmente a reescrever — **sempre sob o TDD da F6** |
 | **runx** | E1 investigação | A cadeia de falha e o catálogo de erros do módulo | Hipótese de causa a **comprovar**, nunca causa declarada. A E1 exige prova |
+| **buildx** | B3 decomposição | Quais features do `MAPA.md` já têm módulo pronto, e com quais fatias | **Informação sobre o recorte, nunca o recorte.** Os três testes do B3 continuam decidindo onde cortar |
+| **buildx** | B5/B6 fechamento | Quais features entregues deveriam virar módulo | Candidatura a extração — oferecida, nunca executada |
 | **stackx** | consulta | A dependência de stack do módulo, separada entre essencial e herdada | O stackx do projeto **tem precedência**. Conflito é reportado, não resolvido pelo modulex |
 
 Detalhamento por skill em `references/integracao/`.
+
+O buildx tem uma particularidade que nenhuma outra tem: ele faz **uma única pergunta** ao humano, no começo, e o M1 por desenho **pergunta** quais fatias injetar (D13). Os dois não podem estar certos ao mesmo tempo. A resolução é o buildx responder no lugar do humano, derivando a escolha do `MAPA.md` e registrando-a como premissa antes de usar — e, não sendo derivável, injetar **só o núcleo**. Injetar tudo é proibido: errar para menos custa uma injeção a mais depois; errar para mais custa um projeto inteiro planejado a mais.
 
 ### Por que a autoridade muda de ponto para ponto
 
@@ -210,13 +214,32 @@ MODULO.md                o contrato
 
 O projeto consome o catálogo sem cloná-lo inteiro: a consulta lê apenas `modulos.json`, e só a injeção puxa o `MODULO.md` do módulo escolhido. Nenhum artefato desce antes da F6.
 
-O raciocínio completo, com o lado descartado, está em `DECISOES-DA-SKILL.md` (D1).
+### Como o projeto encontra o catálogo
+
+Estando dentro de um projeto qualquer, o endereço se resolve por uma **cadeia de quatro degraus**. Pare no primeiro que existir:
+
+| # | Onde | Quando |
+|---|------|--------|
+| 1 | `$MODULEX_CATALOGO/modulos.json` | override explícito de quem sabe o que está fazendo |
+| 2 | `.expx/modulex/docs/modulos/modulos.json` | instalado no projeto pelo `npx expxdev init` |
+| 3 | `docs/modulos/modulos.json` | você está dentro do próprio repositório do catálogo |
+| 4 | nenhum | **catálogo não alcançável** — segue sem módulo, regra 11 |
+
+Sem rede e sem caminho absoluto. O primeiro degrau vence inteiro: catálogo **não se funde**, porque dois `modulos.json` com o mesmo `id` e conteúdos diferentes é a ambiguidade que a skill existe para não criar.
+
+Duas consequências que não são óbvias:
+
+- **Toda saída da M0 declara de qual degrau leu e qual é o `atualizado_em`.** Custa uma linha e torna visível o defeito mais provável da skill depois de instalada: consultar catálogo velho sem saber.
+- **Catálogo não alcançável não é `NAO EXISTE`.** A primeira não registra lacuna, a segunda registra. Confundi-las polui o arquivo que decide a próxima extração com buscas que nunca foram feitas.
+
+Roteiro completo: `references/05-catalogo.md`. O raciocínio, com os lados descartados, está em `DECISOES-DA-SKILL.md` (D1 e D15).
 
 ## Máquina de estados
 
 | Situação | Próximo passo |
 |----------|---------------|
-| catálogo não existe | M0 responde "catálogo vazio" e oferece a extração. Nunca bloqueia |
+| nenhum degrau da cadeia resolve | M0 responde **catálogo não alcançável**, diz como ligar, e segue. Não registra lacuna e não cria `docs/modulos/` no projeto |
+| catálogo alcançável e vazio | M0 responde "catálogo vazio" e oferece a extração. Nunca bloqueia |
 | pergunta é "existe módulo para X?" | M0 consulta |
 | M0 achou, e há trabalho em curso | M1 injeção, com as fatias escolhidas |
 | M0 achou, mas `verificado_em` vencido | M0 responde **com o aviso de vencimento**, e oferece M3 |
@@ -255,6 +278,7 @@ Regra transversal: caminhos sempre relativos. Nenhum caminho absoluto em artefat
 | **runx** | E1 usa cadeia de falha e catálogo de erros como hipótese a comprovar |
 | **stackx** | Consulta cruzada: a dependência de stack do módulo × as convenções detectadas. O stackx local vence |
 | **memox** | Indexa os módulos junto com os demais artefatos, e é o que faz a consulta do M0 melhorar com o tempo |
+| **buildx** | B3 consulta o catálogo com o `MAPA.md` fechado e antes de gravado; B5/B6 devolve as features que deveriam virar módulo. É o melhor gatilho de extração da suíte |
 | **mergex** | O relatório de entrega é insumo da M2: é dele que sai a faixa de esforço observada |
 
 **A ausência de qualquer uma nunca bloqueia o modulex** — e a ausência do modulex nunca bloqueia nenhuma delas.
@@ -268,10 +292,12 @@ Regra transversal: caminhos sempre relativos. Nenhum caminho absoluto em artefat
 | `references/02-extracao.md` | M2: de quais artefatos sai cada seção do `MODULO.md`, e o que fazer com o que falta |
 | `references/03-verificacao.md` | M3: o que torna um módulo obsoleto, prazos por tipo de campo, o que revalidar |
 | `references/04-contrato.md` | O contrato campo a campo, com o que é obrigatório e o que aceita `NAO DETERMINADO` |
+| `references/05-catalogo.md` | A cadeia de resolução do endereço do catálogo, o que cada estágio alcança, e o degrau que não bloqueia |
 | `references/integracao/prodx.md` | P3, P4 e P5 — sinal, fatias, e o campo do briefing |
 | `references/integracao/sprintx.md` | F1, F2, F3, F5 e F6 — as cinco injeções e suas autoridades |
 | `references/integracao/runx.md` | E1 — cadeia de falha como hipótese |
 | `references/integracao/stackx.md` | Essencial × herdado, e por que o stackx local vence |
+| `references/integracao/buildx.md` | B3 e B5/B6 — o recorte que o módulo não faz, e o conflito com a pergunta única |
 | `references/integracao/memox.md` | O que é indexado e como a consulta melhora com o tempo |
 | `assets/TEMPLATE-MODULO.md` | Template do `MODULO.md` — as 14 seções |
 | `assets/TEMPLATE-INDICE.md` | Template do `INDICE.md` do catálogo |

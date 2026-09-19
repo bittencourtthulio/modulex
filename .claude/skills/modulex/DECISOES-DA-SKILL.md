@@ -380,3 +380,61 @@ massa.
 **O contrapeso:** o `verificado_em` do frontmatter continua sendo a data mais
 antiga entre os campos (D8). Corrigir um campo não renova o prazo do módulo,
 e não esconde que o resto está velho.
+
+---
+
+## D15 — Como o projeto consumidor encontra o catálogo compartilhado
+
+**Ambiguidade:** a D1 decidiu que o catálogo vive num repositório irmão,
+compartilhado entre projetos. Ela não disse **como** um projeto qualquer
+chega até lá. Toda instrução operacional da skill nasceu lendo o caminho
+relativo `docs/modulos/modulos.json` — que, dentro de um projeto de cliente,
+resolve para o próprio projeto e devolve catálogo vazio. A D1 estava correta e
+inaplicável ao mesmo tempo.
+
+**Os três lados:**
+
+*Convenção única, `.expx/modulex/`.* A favor: um caminho só, trivial de
+documentar, e o `.expx/` já existe como pasta de instalação do método no
+projeto — é onde o marketplace das skills já aterrissa. Contra: amarra a skill
+ao `npx expxdev init`. Quem instalou a skill à mão, como o próprio README
+ensina, fica sem catálogo e sem explicação.
+
+*Fetch da URL crua com cache.* A favor: sempre atualizado, e a M3 perde
+urgência. Contra — e é decisivo: introduz rede na operação mais frequente da
+skill. O README promete "sem rede, sem banco, sem chamada externa", e essa
+promessa é o que torna a M0 barata. Uma consulta que depende do GitHub estar
+no ar viola a regra 11 toda vez que a rede cai.
+
+*Cadeia de resolução.* A favor: cobre os três modos de instalação que já
+existem (variável para quem sabe o que faz, `.expx/` para quem usou o CLI,
+caminho relativo para quem está dentro do próprio repositório do catálogo),
+sem rede e sem caminho absoluto. Contra: quatro degraus é mais para explicar
+do que um, e catálogo achado em degrau errado é um defeito novo, possível.
+
+**Decisão: cadeia de resolução de quatro degraus,** na ordem
+`$MODULEX_CATALOGO` → `.expx/modulex/docs/modulos/` → `docs/modulos/` →
+nenhum. O primeiro que existir vence; os outros não são consultados.
+
+**Por quê:** o contra da cadeia é mitigável e o dos outros dois não é. O
+excesso de explicação se resolve num arquivo — `references/05-catalogo.md` — e
+o risco de ler o catálogo errado se resolve com uma linha na saída: **toda
+consulta declara de qual degrau leu e qual é o `atualizado_em`**. O contra da
+convenção única (deixar sem catálogo quem instalou à mão) e o da rede (quebrar
+a promessa de custo zero) atingem o mecanismo central.
+
+**O que a cadeia não faz:** não funde catálogos. Dois `modulos.json` com o
+mesmo `id` e conteúdos diferentes é exatamente a ambiguidade que a skill
+existe para não criar. O primeiro degrau vence inteiro, e a existência do
+segundo é reportada em uma linha, nunca mesclada.
+
+**O quarto degrau é ausência, não `NAO EXISTE`.** "Não há catálogo alcançável"
+e "há catálogo e ele não cobre isto" são respostas diferentes: a segunda
+registra lacuna, a primeira não. Confundi-las polui o `LACUNAS.md` com
+buscas que nunca chegaram a ser feitas, e o `LACUNAS.md` é o que decide a
+próxima extração.
+
+**O que revisa:** se aparecer um quarto modo de instalação — catálogo em
+pacote publicado, por exemplo — ele entra como degrau, não substitui a cadeia.
+Se a variável de ambiente se provar o degrau usado em 100% dos casos reais,
+os degraus 2 e 3 viram legado e a cadeia encolhe.

@@ -19,7 +19,7 @@ isso antes?**
 .claude/commands/         os cinco comandos, para Claude Code
 .opencode/commands/       os mesmos cinco, conteudo identico, para OpenCode
 .github/assets/           os SVGs do README: banner, badges e os dois diagramas
-docs/integracao/          prompts de patch para prodx, sprintx, runx, stackx, memox
+docs/integracao/          prompts de patch: prodx, sprintx, runx, stackx, memox, buildx
 docs/modulos/             o catalogo: INDICE.md, modulos.json, LACUNAS.md
 exemplos/                 o MODULO.md do modulo zero, whatsapp-uazapi
 ```
@@ -33,7 +33,11 @@ entre todas as localizações.
 - **Comandos duplicados devem permanecer idênticos.** Ao alterar um arquivo
   em `.claude/commands/`, copie-o para `.opencode/commands/` e confirme com
   `diff -r` entre as duas pastas.
-- **Sem caminho absoluto** em qualquer arquivo.
+- **Sem caminho absoluto** em qualquer arquivo. O catálogo se endereça pela
+  cadeia de quatro degraus de `references/05-catalogo.md` — nunca por caminho
+  fixo. Ao alterar a cadeia, altere nos seis lugares que a repetem: o
+  reference, o `SKILL.md`, os comandos `/modulex` e `/modulex-buscar`, a nota
+  comum dos patches em `docs/integracao/`, e o `README.md`.
 - **Sem prefixo `expx`** em nomes de arquivo, comando ou skill.
 - **Frontmatter no padrão expx-schema v1**: chaves em `snake_case` sem acento,
   enums minúsculos sem acento, datas em ISO, chave nunca omitida.

@@ -33,6 +33,20 @@ REGRAS DO PATCH
   7. Nada muda quando o modulex não está instalado.
   8. Nenhum caminho absoluto.
 
+NOTA SOBRE O CAMINHO DO CATÁLOGO
+  O catálogo é compartilhado entre projetos e NÃO vive dentro do projeto
+  em que a skill roda. Onde este patch escrever `<catalogo>/`, resolva
+  pela cadeia de quatro degraus do modulex, parando no primeiro que
+  existir:
+
+      1. $MODULEX_CATALOGO/
+      2. .expx/modulex/docs/modulos/
+      3. docs/modulos/        (dentro do proprio repositorio do catalogo)
+      4. nenhum -> catalogo nao alcancavel; siga sem modulo (regra 11)
+
+  Sem rede e sem caminho absoluto. O degrau 4 NUNCA bloqueia, e nao e a
+  mesma coisa que "o catalogo nao tem este modulo".
+
 ═══════════════════════════════════════════════════════════════════════
 PARTE 2 — O QUE ALTERAR
 ═══════════════════════════════════════════════════════════════════════
@@ -41,10 +55,10 @@ PARTE 2 — O QUE ALTERAR
 
    Acrescente três fontes:
 
-       docs/modulos/INDICE.md        um registro por modulo: id, problema,
+       <catalogo>/INDICE.md          um registro por modulo: id, problema,
                                      fatias, data de verificacao
        MODULO.md (secoes 1 e 2)      problema e sinonimos — as chaves de busca
-       docs/modulos/LACUNAS.md       o que foi procurado e nao existe, com
+       <catalogo>/LACUNAS.md         o que foi procurado e nao existe, com
                                      quantas vezes
 
    Com a nota explícita de que os artefatos de código e as seções 9 a 12
@@ -108,7 +122,7 @@ PARTE 3 — VERIFICAÇÃO E ENTREGA
 ═══════════════════════════════════════════════════════════════════════
 
 VERIFICAÇÃO
-  1. Sem `docs/modulos/`: reconstrua o índice e confirme que ele sai
+  1. Sem catálogo alcançável: reconstrua o índice e confirme que ele sai
      igual ao anterior, sem erro e sem aviso.
   2. Com catálogo: confirme que os artefatos de código do módulo NÃO
      entraram no índice, e que as seções 9 a 12 também não.

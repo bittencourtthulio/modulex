@@ -34,6 +34,20 @@ REGRAS DO PATCH
      módulo é referência histórica e não entra na estimativa.
   7. Nenhum caminho absoluto.
 
+NOTA SOBRE O CAMINHO DO CATÁLOGO
+  O catálogo é compartilhado entre projetos e NÃO vive dentro do projeto
+  em que a skill roda. Onde este patch escrever `<catalogo>/`, resolva
+  pela cadeia de quatro degraus do modulex, parando no primeiro que
+  existir:
+
+      1. $MODULEX_CATALOGO/
+      2. .expx/modulex/docs/modulos/
+      3. docs/modulos/        (dentro do proprio repositorio do catalogo)
+      4. nenhum -> catalogo nao alcancavel; siga sem modulo (regra 11)
+
+  Sem rede e sem caminho absoluto. O degrau 4 NUNCA bloqueia, e nao e a
+  mesma coisa que "o catalogo nao tem este modulo".
+
 ═══════════════════════════════════════════════════════════════════════
 PARTE 2 — O QUE ALTERAR
 ═══════════════════════════════════════════════════════════════════════

@@ -6,9 +6,26 @@ Dado um problema em linguagem natural, existe módulo pronto, e que fatias ele t
 
 É o que o P3 do prodx e a F1 do sprintx chamam. Se esta operação for cara, ninguém usa e a skill vira enfeite — mesmo raciocínio da triagem do prodx.
 
+## Onde está o catálogo
+
+O catálogo é compartilhado entre projetos, e não vive dentro do projeto em que
+você está. Resolva o endereço pela cadeia de quatro degraus de
+`references/05-catalogo.md`:
+
+| # | Onde |
+|---|------|
+| 1 | `$MODULEX_CATALOGO/modulos.json` |
+| 2 | `.expx/modulex/docs/modulos/modulos.json` |
+| 3 | `docs/modulos/modulos.json` — dentro do próprio repositório do catálogo |
+| 4 | nenhum → **catálogo não alcançável**, que não é `NAO EXISTE` |
+
+Pare no primeiro que existir, e **declare qual degrau foi** na última linha da
+resposta. O quarto degrau nunca bloqueia: segue sem módulo, como o sprintx
+sempre planejou.
+
 ## A regra de custo
 
-A consulta lê **`docs/modulos/modulos.json` e nada mais.**
+Resolvido o endereço, a consulta lê **o `modulos.json` e nada mais.**
 
 Ela nunca:
 
@@ -43,7 +60,7 @@ Começa barato e específico, termina amplo. Pare quando achar — mas registre 
 
 Termos a tentar sempre, em ordem: o substantivo do problema em português, o mesmo em inglês, o nome do fornecedor se o usuário citou um, e o nome do artefato de interface que o usuário mencionou (`inbox`, `checkout`, `webhook`).
 
-## Os quatro desfechos
+## Os cinco desfechos
 
 ### EXISTE
 
@@ -72,6 +89,15 @@ Há módulo cujo problema **encosta** no pedido sem cobri-lo: cobre uma parte, o
 
 Diga exatamente o que cobre e o que não cobre — a seção 4 do `MODULO.md` existe para isto. O sprintx decide se o pedaço que existe compensa.
 
+### CATALOGO NAO ALCANCAVEL
+
+Os quatro degraus de `references/05-catalogo.md` não resolveram: não há
+catálogo visível a partir deste projeto.
+
+**Isto não é `NAO EXISTE`.** Não registre lacuna: a busca não chegou a ser
+feita, e lacuna inventada polui o arquivo que decide a próxima extração.
+Responda a ausência, diga o que procurou, e siga sem módulo (regra 11).
+
 ### NAO EXISTE
 
 Procurou nos cinco lugares, com sinônimos em pt e en, e não achou.
@@ -99,7 +125,13 @@ Verificado em: <data> <(VENCIDO)>
 Repo: <url>
 
 Nao cobre: <as bordas relevantes ao que foi pedido>
+
+Catalogo: <caminho> (degrau <n>) · <n> modulos · atualizado_em <data>
 ```
+
+A última linha é obrigatória em todo desfecho, inclusive no `NAO EXISTE`. Ela
+custa uma linha e torna visível o defeito mais provável da skill depois de
+instalada: alguém consultando um catálogo velho sem saber.
 
 Sem módulo:
 
@@ -108,6 +140,18 @@ Modulo — "<o que foi procurado>"
 Termos: <termos tentados>
 Desfecho: NAO EXISTE
 Registrado em LACUNAS.md. Nenhum modulo pronto para este problema.
+
+Catalogo: <caminho> (degrau <n>) · <n> modulos · atualizado_em <data>
+```
+
+Sem catálogo alcançável:
+
+```
+Modulo — "<o que foi procurado>"
+Desfecho: CATALOGO NAO ALCANCAVEL
+Procurei: $MODULEX_CATALOGO (<estado>), .expx/modulex/docs/modulos/ (<estado>),
+docs/modulos/ (<estado>)
+Seguindo sem modulo. Nada foi registrado em LACUNAS.md.
 ```
 
 ## Quem chamou muda o que se diz
@@ -127,13 +171,17 @@ A consulta é a mesma; o enquadramento não.
 - O desfecho está declarado.
 - Se vencido: o aviso está na primeira linha.
 - Se `NAO EXISTE`: a busca entrou no `LACUNAS.md`.
+- Se `CATALOGO NAO ALCANCAVEL`: **nada** entrou no `LACUNAS.md`.
+- O degrau do catálogo e o `atualizado_em` estão na última linha.
 - Nenhum repositório de módulo foi clonado e nenhum artefato foi aberto.
 
 ## Quando falha
 
 | Falha | O que fazer |
 |-------|-------------|
-| Catálogo não existe | Responda "catálogo vazio, nenhum módulo registrado" e ofereça a M2. Nunca bloqueie o trabalho que chamou |
+| Catálogo existe e tem zero módulos | Responda "catálogo vazio, nenhum módulo registrado" e ofereça a M2. Nunca bloqueie o trabalho que chamou |
+| Nenhum degrau da cadeia resolve | Desfecho `CATALOGO NAO ALCANCAVEL`. Diga como ligar o catálogo (variável ou `expxdev init`) e siga. Não crie `docs/modulos/` no projeto do cliente |
+| `MODULEX_CATALOGO` aponta para caminho inexistente | Reporte em uma linha e siga para o degrau 2. Variável errada é mais comum que variável certa |
 | `modulos.json` existe mas está desatualizado em relação aos `MODULO.md` | Reporte a divergência e responda pelo `modulos.json` mesmo assim. Reindexar é M2/M3, não é trabalho da consulta |
 | Dois módulos resolvem o mesmo problema | Liste os dois com fatias e esforço lado a lado. **Não escolha** (regra 1). A escolha é da F2/F3 do sprintx, com o stackx |
 | O módulo achado tem stack incompatível com o projeto | Reporte a incompatibilidade como informação, não como veto. Muita coisa porta; o que não porta é a UI. Quem decide é o sprintx com o stackx |

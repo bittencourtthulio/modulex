@@ -326,7 +326,9 @@ E, em cada repositório de módulo, `MODULO.md` na raiz.
 
 **Por que repositório irmão e não `docs/modulos/` de cada projeto:** módulo é ativo do ecossistema, não da casa. Um catálogo local nasceria vazio em todo projeto novo — exatamente onde o módulo mais valeria — e a extração feita no cliente A nunca chegaria ao cliente B. O ciclo não fecharia, e a skill viraria um `memox` com outro nome.
 
-O consumo continua barato porque a consulta lê um arquivo, a injeção lê mais um, e os artefatos só descem na F6. O raciocínio completo, com o lado descartado, está em [`DECISOES-DA-SKILL.md`](.claude/skills/modulex/DECISOES-DA-SKILL.md), D1.
+**Como um projeto qualquer chega até ele:** por uma cadeia de quatro degraus, parando no primeiro que existir — `$MODULEX_CATALOGO` → `.expx/modulex/docs/modulos/` → `docs/modulos/` (dentro do próprio repositório do catálogo) → nenhum. Sem rede, sem caminho absoluto, e o quarto degrau **não bloqueia**: segue sem módulo, como o `sprintx` sempre planejou. Toda consulta declara de qual degrau leu e qual é o `atualizado_em`, porque o defeito mais provável depois de instalada é alguém consultar catálogo velho sem saber.
+
+O consumo continua barato porque a consulta lê um arquivo, a injeção lê mais um, e os artefatos só descem na F6. O raciocínio completo, com o lado descartado, está em [`DECISOES-DA-SKILL.md`](.claude/skills/modulex/DECISOES-DA-SKILL.md), D1 e D15.
 
 ---
 
@@ -368,6 +370,7 @@ Os patches em [`docs/integracao/`](docs/integracao/) são prompts autônomos. Ap
 | [`patch-runx.md`](docs/integracao/patch-runx.md) | a cadeia de falha como hipótese no E1 |
 | [`patch-stackx.md`](docs/integracao/patch-stackx.md) | **o mais delicado** — por que o `stackx` local vence |
 | [`patch-memox.md`](docs/integracao/patch-memox.md) | como os módulos são indexados e como a consulta melhora |
+| [`patch-buildx.md`](docs/integracao/patch-buildx.md) | o B3 consulta sem recortar, e o B5/B6 devolve — inclui o conflito com a pergunta única |
 
 Cada patch diz exatamente qual arquivo alterar, o que acrescentar, e o que **não** mudar, com verificação numerada ao final.
 

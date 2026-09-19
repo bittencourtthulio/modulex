@@ -29,6 +29,12 @@ Feature entregue e nunca usada em produção não vira módulo: vira exemplo. O 
 8. **Grave o `MODULO.md`** na raiz do repositório do módulo, de `assets/TEMPLATE-MODULO.md`.
 9. **Atualize o catálogo**: linha no `INDICE.md`, entrada no `modulos.json`, e remova do `LACUNAS.md` a lacuna que este módulo fecha.
 
+   A M2 **escreve**, e escrita exige degrau gravável. Se o catálogo resolveu
+   no degrau 2 — uma cópia instalada em `.expx/modulex/` — grave no
+   repositório do catálogo, não na cópia: o próximo `expxdev init` a
+   sobrescreve. Não sabendo onde ele está, **pergunte**; não grave na cópia
+   "por enquanto".
+
 ## Regras
 
 - **Faixa de esforço sem observação real é `NAO DETERMINADO`** (regra 6). Nunca estime, nunca infira por analogia, nunca use sensação. O P4 do prodx encolhe escopo com base nesse número.

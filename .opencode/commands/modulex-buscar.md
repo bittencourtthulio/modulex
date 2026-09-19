@@ -9,7 +9,16 @@ O que procurar está em `$ARGUMENTS`. Se vier vazio, peça o problema em uma fra
 
 ## A regra de custo
 
-Leia **`docs/modulos/modulos.json` e nada mais.**
+Resolva o endereço do catálogo pela cadeia de `references/05-catalogo.md`,
+parando no primeiro degrau que existir:
+
+1. `$MODULEX_CATALOGO/modulos.json`
+2. `.expx/modulex/docs/modulos/modulos.json`
+3. `docs/modulos/modulos.json` — dentro do próprio repositório do catálogo
+4. nenhum → **catálogo não alcançável**. Diga isso, diga como ligar, e siga.
+   Não é `NAO EXISTE` e não registra lacuna.
+
+Resolvido o degrau, leia **o `modulos.json` e nada mais.**
 
 Não clone repositório de módulo, não abra artefato, não leia o `MODULO.md` inteiro, não chame a API de fornecedor nenhum. O módulo zero sozinho tem mais de 150 arquivos de artefato: clonar isso para responder "existe módulo?" é o custo que faz uma ferramenta ser contornada no primeiro dia.
 

@@ -9,8 +9,10 @@ O módulo e as fatias estão em `$ARGUMENTS`. Se vier vazio, rode `/modulex-busc
 
 ## Antes de injetar
 
-1. **Identifique o destino**: F1 do sprintx, E1 do runx, ou F5 (auditoria com módulo descoberto depois). O destino muda o que desce.
-2. **Confirme as fatias.** Sem indicação, **pergunte** — não injete o módulo inteiro por padrão. Injetar as seis sprints do módulo zero num projeto que só quer receber e responder mensagem enche a base de IA, ligações e grupos que ninguém pediu, e a F3 planeja o que foi injetado.
+1. **Resolva o catálogo** pela cadeia de `references/05-catalogo.md`. Sem
+   degrau que resolva, não há o que injetar: diga isso e siga (regra 11).
+2. **Identifique o destino**: F1 do sprintx, E1 do runx, ou F5 (auditoria com módulo descoberto depois). O destino muda o que desce.
+3. **Confirme as fatias.** Sem indicação, **pergunte** — não injete o módulo inteiro por padrão. Injetar as seis sprints do módulo zero num projeto que só quer receber e responder mensagem enche a base de IA, ligações e grupos que ninguém pediu, e a F3 planeja o que foi injetado.
 
 ## O que desce
 

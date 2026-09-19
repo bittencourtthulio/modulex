@@ -43,7 +43,8 @@ Para cada endpoint: ainda existe com o mesmo método e caminho? A autenticação
 4. Corrija o `MODULO.md`. Correção de campo não reescreve o módulo.
 5. Atualize `verificado_em` por bloco e no frontmatter.
 6. Acrescente linha à seção 14 (procedência): o que foi verificado, contra o quê, quando, resultado.
-7. Atualize `verificado_em` no `modulos.json`.
+7. Atualize `verificado_em` no `modulos.json` — no repositório do catálogo,
+   não numa cópia instalada em `.expx/modulex/` (ver `references/05-catalogo.md`).
 8. **Avise retroativamente**, se houve divergência de contrato.
 
 ## O aviso retroativo
