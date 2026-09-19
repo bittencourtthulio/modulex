@@ -2,7 +2,7 @@
 kind: modulo_indice
 schema: expx-schema-v1
 criado_em: 2026-09-02
-atualizado_em: 2026-09-02
+atualizado_em: 2026-09-19
 total_modulos: 1
 ativos: 1
 obsoletos: 0
@@ -27,6 +27,7 @@ descoberta.
 - **Módulos no catálogo:** 1
 - **Ativos:** 1 · **Obsoletos:** 0
 - **Com verificação vencida:** 0 — o contrato do `whatsapp-uazapi` vence em 2027-02-24
+- **Buscas sem resultado registradas:** 2 — `emitir nota fiscal` e `nfs-e`, ambas em 2026-09-19
 - **Sem faixa de esforço:** 1 — o P4 do prodx dimensiona só pelas fatias nesse caso
 
 ## O indicador do modulex
@@ -34,7 +35,7 @@ descoberta.
 Dois números, e cada um sozinho mente. Precisam do memox para serem exatos;
 sem ele, o catálogo reporta o que sabe e declara a leitura parcial.
 
-- **Features com integração de terceiro que consultaram um módulo antes de planejar:** 0 de 0 — o catálogo acabou de nascer
+- **Features com integração de terceiro que consultaram um módulo antes de planejar:** 0 de 0 — nenhuma feature ainda. As buscas de 2026-09-19 foram verificação da instalação, não features, e deliberadamente **não** entram aqui
 - **Dessas, quantas viraram módulo novo depois:** 0
 
 | Leitura | Escrita | Diagnóstico |

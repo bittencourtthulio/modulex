@@ -32,9 +32,11 @@ histórico, sem atribuição e sem ninguém sabendo quem respondeu o quê.
 
 ## 2. Sinonimos e termos de busca
 
-**Português:** whatsapp, zap, wpp, atendimento por whatsapp, inbox de atendimento,
-caixa de entrada, conversa com cliente, mensagem para cliente, disparo de mensagem,
-qr code do whatsapp, chatbot de whatsapp, central de atendimento
+**Português:** whatsapp, zap, wpp, atendimento por whatsapp, atendimento pelo
+whatsapp, atender cliente pelo whatsapp, falar com cliente pelo whatsapp,
+responder cliente no whatsapp, inbox de atendimento, caixa de entrada, conversa
+com cliente, mensagem para cliente, disparo de mensagem, qr code do whatsapp,
+chatbot de whatsapp, central de atendimento
 
 **Inglês:** whatsapp, whatsapp integration, chat inbox, shared inbox, messaging,
 instant messaging, conversation, webhook de mensagem, qr pairing, message provider

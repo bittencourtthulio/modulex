@@ -1,7 +1,7 @@
 {
   "schema": "expx-schema-v1",
   "kind": "modulo_indice_maquina",
-  "atualizado_em": "2026-09-02",
+  "atualizado_em": "2026-09-19",
   "modulos": [
     {
       "id": "whatsapp-uazapi",
@@ -19,7 +19,11 @@
           "disparo de mensagem",
           "qr code do whatsapp",
           "chatbot de whatsapp",
-          "central de atendimento"
+          "central de atendimento",
+          "atender cliente pelo whatsapp",
+          "atendimento pelo whatsapp",
+          "falar com cliente pelo whatsapp",
+          "responder cliente no whatsapp"
         ],
         "en": [
           "whatsapp",
@@ -33,7 +37,11 @@
           "qr pairing",
           "message provider"
         ],
-        "fornecedores": ["uazapi", "api4com", "openrouter"],
+        "fornecedores": [
+          "uazapi",
+          "api4com",
+          "openrouter"
+        ],
         "casa": [
           "instancia",
           "sessao",
